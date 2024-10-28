@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openwar.charpy.openwarlauncher.AuthPageController">
+
+    <ImageView fx:id="backgroundImage" fitHeight="678.0" fitWidth="931.0" preserveRatio="true">
+        <image>
+            <Image url="https://openwar.fr/public/images/background.png" />
+        </image>
+    </ImageView>
+
+    <ImageView fx:id="icon" fitHeight="117.0" fitWidth="100.0" layoutX="416.0" layoutY="31.0" preserveRatio="true" AnchorPane.leftAnchor="416.0" AnchorPane.topAnchor="31.0">
+        <image>
+            <Image url="https://openwar.fr/public/images/op.png" />
+        </image>
+    </ImageView>
+
+    <Label fx:id="playercount" layoutX="370.0" layoutY="276.0" prefHeight="32.0" prefWidth="216.0" style="-fx-font-size: 22px; -fx-text-fill: white; -fx-font-weight: bold;" text="0/40 Players Online" textAlignment="CENTER" textFill="WHITE">
+        <font>
+            <Font name="Book Antiqua Bold" size="22.0" />
+        </font>
+    </Label>
+
+    <ImageView fx:id="avatarImageView" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" AnchorPane.leftAnchor="50" AnchorPane.topAnchor="350" />
+
+    <Label fx:id="statusLabel" prefHeight="25.0" prefWidth="145.0" style="-fx-font-size: 14px; -fx-text-fill: white;" AnchorPane.leftAnchor="50" AnchorPane.topAnchor="470" />
+
+    <Label fx:id="usernameLabel" prefHeight="25.0" prefWidth="145.0" style="-fx-font-size: 14px; -fx-text-fill: white;" AnchorPane.leftAnchor="50" AnchorPane.topAnchor="500" />
+
+    <Button fx:id="authButton" depthTest="DISABLE" layoutX="370.0" layoutY="539.0" prefHeight="40.0" prefWidth="192.0" style="-fx-background-color: #7d1c15; -fx-text-fill: white; -fx-font-size: 14px;" text="Se connecter avec Microsoft" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="539.0" />
+
+</AnchorPane>

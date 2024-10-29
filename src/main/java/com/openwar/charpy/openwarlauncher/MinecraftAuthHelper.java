@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,12 +12,18 @@ public class MinecraftAuthHelper {
 
     public PlayerProfile authenticateAndFetchPlayerProfile(String accessToken) throws Exception {
         String xboxLiveToken = getXboxLiveToken(accessToken);
+        String userHash = "";
+        userHash = extractUserHash(xboxLiveToken);
+        System.out.println("User Hash: " + userHash);
         System.out.println(" XBOX LIVE TOKEN : "+xboxLiveToken );
         String xstsToken = getXstsToken(xboxLiveToken);
         System.out.println(" XSTS TOKEN : "+xstsToken );
-        String minecraftToken = getMinecraftToken(xstsToken, xboxLiveToken);
+        String minecraftToken = getMinecraftToken(xstsToken, xboxLiveToken, userHash);
         System.out.println(" MINECRAFT TOKEN : "+minecraftToken );
-        PlayerProfile playerProfile = getPlayerProfile(minecraftToken);
+        String accessTokenMc = "";
+        accessTokenMc = extractAccessTokenFromJson(minecraftToken);
+
+        PlayerProfile playerProfile = getPlayerProfile(accessTokenMc);
         return playerProfile;
     }
 
@@ -41,7 +48,6 @@ public class MinecraftAuthHelper {
             byte[] input = payload.getBytes("utf-8");
             os.write(input, 0, input.length);
         }
-
         return readResponse(connection);
     }
 
@@ -70,6 +76,18 @@ public class MinecraftAuthHelper {
         return readResponse(connection);
     }
 
+    private String extractUserHash(String json) {
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            System.out.println(jsonObject);
+            JSONArray xuiArray = jsonObject.getJSONObject("DisplayClaims").getJSONArray("xui");
+            System.out.println(xuiArray);
+            return xuiArray.getJSONObject(0).getString("uhs");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     private String extractTokenFromJson(String json) {
         try {
             JSONObject jsonObject = new JSONObject(json);
@@ -79,9 +97,19 @@ public class MinecraftAuthHelper {
             return null;
         }
     }
+    private String extractAccessTokenFromJson(String json) {
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            return jsonObject.getString("access_token");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 
-    private String getMinecraftToken(String xstsToken, String xboxLiveToken) throws Exception {
+
+    private String getMinecraftToken(String xstsToken, String xboxLiveToken, String userHash) throws Exception {
         URL url = new URL("https://api.minecraftservices.com/authentication/login_with_xbox");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         xstsToken = extractTokenFromJson(xstsToken);
@@ -93,7 +121,7 @@ public class MinecraftAuthHelper {
         connection.setDoOutput(true);
 
         String payload = "{"
-                + "\"identityToken\": \"XBL3.0 x=" + xboxLiveToken + ";" + xstsToken + "\""
+                + "\"identityToken\": \"XBL3.0 x=" + userHash + ";" + xstsToken + "\""
                 + "}";
 
         try (OutputStream os = connection.getOutputStream()) {
@@ -109,13 +137,20 @@ public class MinecraftAuthHelper {
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Authorization", "Bearer " + minecraftToken);
 
+        int responseCode = connection.getResponseCode();
+        if (responseCode != HttpURLConnection.HTTP_OK) {
+            throw new IOException("Failed to fetch player profile. Response code: " + responseCode);
+        }
+
         String response = readResponse(connection);
-        System.out.println(" response 1 ="+response);
+        System.out.println("Response from Minecraft Profile API: " + response);
+
         JSONObject jsonObject = new JSONObject(response);
-
-        String username = jsonObject.getString("name");
-        String avatarUrl = "https://crafatar.com/renders/body/" + jsonObject.getString("id");
-
+        String username = jsonObject.optString("name", "Unknown");
+        String uuid = jsonObject.optString("id", "Unknown");
+        String avatarUrl = "https://crafatar.com/renders/head/" + uuid;
+        LaunchMinecraft lm = new LaunchMinecraft();
+        lm.startMinecraft(minecraftToken, username, uuid);
         return new PlayerProfile(username, avatarUrl);
     }
 

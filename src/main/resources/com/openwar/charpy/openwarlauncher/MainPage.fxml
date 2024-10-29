@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openwar.charpy.openwarlauncher.MainPageController">
-    <ImageView fx:id="backgroundImage" fitHeight="1024" fitWidth="1440" layoutX="-201.0" layoutY="-26.0" preserveRatio="true">
+<AnchorPane prefHeight="765.0" prefWidth="1061.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openwar.charpy.openwarlauncher.MainPageController">
+    <ImageView fx:id="backgroundImage" fitHeight="1008.0" fitWidth="1261.0" layoutX="-32.0" layoutY="-12.0" preserveRatio="true">
         <image>
             <Image url="https://openwar.fr/public/images/background.png" />
         </image>
     </ImageView>
+    <Button fx:id="playerButton" depthTest="DISABLE" layoutX="503.0" layoutY="831.0" prefHeight="15.0" prefWidth="192.0" style="-fx-background-color: #7d1c15; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;" text="Play" textFill="WHITE" AnchorPane.leftAnchor="503.0" AnchorPane.topAnchor="831.0">
+        <font>
+            <Font name="Monospaced Bold" size="12.0" />
+        </font>
+        <cursor>
+            <ImageCursor fx:constant="HAND" />
+        </cursor>
+    </Button>
 </AnchorPane>

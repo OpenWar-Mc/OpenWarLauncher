@@ -6,10 +6,15 @@ import com.sun.net.httpserver.HttpServer;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import org.json.JSONObject;
 
 import java.io.DataInputStream;
@@ -55,7 +60,7 @@ public class AuthPageController {
     private Label usernameLabel;
 
     @FXML
-    private ImageView avatarImageView;
+    private ImageView avatar;
 
     private boolean isConnected = false;
 
@@ -63,6 +68,10 @@ public class AuthPageController {
     private void initialize() throws Exception {
         setupUI();
         pingServer("90.109.7.236", 25595);
+        Path path = Paths.get(System.getenv("APPDATA"), ".openwar\\launcher_profiles.json");
+        if (Files.exists(path)) {
+            isConnected = true;
+        }
         handleConnection();
     }
 
@@ -118,14 +127,15 @@ public class AuthPageController {
 
         System.out.println("Username: " + profile.getUsername());
         System.out.println("Avatar URL: " + profile.getAvatarUrl());
-        String username = "Chapy";
-        String avatarUrl = "path/to/user_avatar.png";
+        String username = profile.getUsername();
+        String avatarUrl = profile.getAvatarUrl();
         Platform.runLater(() -> {
-            //statusLabel.setText("Connected");
-            //usernameLabel.setText(username);
-            //avatarImageView.setImage(new Image(avatarUrl));
+            statusLabel.setText("Connected");
+            usernameLabel.setText(username);
+            avatar.setImage(new Image(avatarUrl));
         });
     }
+
     private String readAccessToken() throws IOException {
         Path path = Paths.get(System.getenv("APPDATA"), ".openwar");
         while (!Files.exists(path)) {
@@ -145,7 +155,7 @@ public class AuthPageController {
         Task<Void> authTask = new Task<>() {
             @Override
             protected Void call() throws Exception {
-                startLocalServer(); // Démarrer le serveur local ici
+                startLocalServer();
                 String scope = URLEncoder.encode(SCOPE, StandardCharsets.UTF_8.toString());
                 String authLink = AUTH_URL + "?client_id=" + CLIENT_ID
                         + "&redirect_uri=" + URLEncoder.encode(REDIRECT_URI, StandardCharsets.UTF_8.toString())
@@ -207,7 +217,7 @@ public class AuthPageController {
                     //Files.write(Paths.get(System.getenv("APPDATA"), ".openwar"), jsonResponse.toString().getBytes());
 
                     // Appeler loadUserInfo ici avec le token d'accès
-                    System.out.println("ACCESS TOKEN: "+ accessToken);
+                    System.out.println("ACCESS TOKEN: " + accessToken);
                     controller.loadUserInfo(accessToken);
 
                     responseMessage = "Authentication successful! You can close this window.";
@@ -231,12 +241,30 @@ public class AuthPageController {
             authButton.setText("Login");
             authButton.setOnAction(event -> viewManager.loadView("MainPage.fxml"));
         } else {
-            statusLabel.setText("Login");
+            statusLabel.setText("");
             usernameLabel.setText("Disconnected");
-            authButton.setText("Login with Microsoft");
-            authButton.setOnAction(event -> authenticateWithMicrosoft());
+            System.out.println("DISCONNECTED");
+
+            Image image = new Image("https://openwar.fr/public/images/uk.png", true);
+
+            image.progressProperty().addListener((obs, oldProgress, newProgress) -> {
+                if (newProgress.doubleValue() == 1.0) {
+                    Platform.runLater(() -> avatar.setImage(image));
+                }
+            });
+
+           authButton.setText("Login with Microsoft");
+           authButton.setOnAction(event -> authenticateWithMicrosoft());
+
+           //FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
+           //Parent authPage = loader.load();
+
+           //Stage authStage = new Stage();
+           //authStage.setTitle("OpenWar - Launcher | Stable Edition v1.0.0");
+           //authStage.getIcons().add(new Image("https://openwar.fr/public/images/op.png"));
+           //Scene authScene = new Scene(authPage, 1080, 720);
+           //authStage.setScene(authScene);
+           //authStage.show();
         }
     }
-
-
 }

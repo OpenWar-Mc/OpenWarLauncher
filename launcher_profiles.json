@@ -1,0 +1,23 @@
+{
+  "profiles": {
+    "OpenWar": {
+      "name": "OpenWar",
+      "lastVersionId": "1.12.2-forge1.12.2-14.23.5.2860",
+      "created": "2024-07-27T18:45:09.624Z",
+      "lastUsed": "2024-07-27T18:45:09.628Z"
+    }
+  },
+  "selectedProfile": "OpenWar",
+  "clientToken": "56265cff-d490-45d8-9710-48009cccd752",
+  "authenticationDatabase": {
+    "2c1dd0e8a41449ecae13df23a8fe17ad": {
+      "displayName": "_Chapy_",
+      "accessToken": "eyJraWQiOiJhYzg0YSIsImFsZyI6IkhTMjU2In0.eyJ4dWlkIjoiMjUzNTQyMDgxOTAwMjk4MyIsImFnZyI6IkFkdWx0Iiwic3ViIjoiMTM0MDI0ZTctYzQ0Ni00YmEzLTgzMzUtMGYwMzFlMGQzZTIwIiwiYXV0aCI6IlhCT1giLCJucyI6ImRlZmF1bHQiLCJyb2xlcyI6W10sImlzcyI6ImF1dGhlbnRpY2F0aW9uIiwiZmxhZ3MiOlsidHdvZmFjdG9yYXV0aCIsIm1zYW1pZ3JhdGlvbl9zdGFnZTQiLCJvcmRlcnNfMjAyMiIsIm11bHRpcGxheWVyIl0sInByb2ZpbGVzIjp7Im1jIjoiMmMxZGQwZTgtYTQxNC00OWVjLWFlMTMtZGYyM2E4ZmUxN2FkIn0sInBsYXRmb3JtIjoiVU5LTk9XTiIsInl1aWQiOiI4NzQyMjc0MjViNWYyOGFjMzc1NDFkOThhYTY0YjU3NiIsIm5iZiI6MTcyNTM0ODk3MywiZXhwIjoxNzI1NDM1MzczLCJpYXQiOjE3MjUzNDg5NzN9.yj-iDET3Kjr0R-L3InkPjVMWTqCvAwijn2RUPr8Z-Gc",
+      "userid": "2c1dd0e8a41449ecae13df23a8fe17ad"
+    }
+  },
+  "selectedUser": {
+    "account": "",
+    "profile": ""
+  }
+}

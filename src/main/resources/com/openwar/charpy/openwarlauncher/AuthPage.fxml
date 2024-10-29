@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openwar.charpy.openwarlauncher.AuthPageController">
@@ -18,11 +20,15 @@
             <Image url="https://openwar.fr/public/images/op.png" />
         </image>
     </ImageView>
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#650707" height="56.0" layoutX="341.0" layoutY="153.0" opacity="0.3" stroke="#3c0e0e" strokeDashOffset="49.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="100.0" strokeType="OUTSIDE" width="233.0" />
 
-    <Label fx:id="playercount" layoutX="370.0" layoutY="276.0" prefHeight="32.0" prefWidth="216.0" style="-fx-font-size: 22px; -fx-text-fill: white; -fx-font-weight: bold;" text="0/40 Players Online" textAlignment="CENTER" textFill="WHITE">
+    <Label fx:id="playerCount" layoutX="358.0" layoutY="165.0" prefHeight="32.0" prefWidth="216.0" style="-fx-font-size: 22px; -fx-text-fill: white; -fx-font-weight: bold;" text="0/40 Players Online" textAlignment="CENTER" textFill="WHITE">
         <font>
-            <Font name="Book Antiqua Bold" size="22.0" />
+            <Font name="Monospaced Regular" size="23.0" />
         </font>
+      <effect>
+         <Glow level="0.55" />
+      </effect>
     </Label>
 
     <ImageView fx:id="avatarImageView" fitHeight="100.0" fitWidth="100.0" preserveRatio="true" AnchorPane.leftAnchor="50" AnchorPane.topAnchor="350" />
@@ -31,6 +37,9 @@
 
     <Label fx:id="usernameLabel" prefHeight="25.0" prefWidth="145.0" style="-fx-font-size: 14px; -fx-text-fill: white;" AnchorPane.leftAnchor="50" AnchorPane.topAnchor="500" />
 
-    <Button fx:id="authButton" depthTest="DISABLE" layoutX="370.0" layoutY="539.0" prefHeight="40.0" prefWidth="192.0" style="-fx-background-color: #7d1c15; -fx-text-fill: white; -fx-font-size: 14px;" text="Se connecter avec Microsoft" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="539.0" />
+    <Button fx:id="authButton" depthTest="DISABLE" layoutX="370.0" layoutY="547.0" prefHeight="15.0" prefWidth="192.0" style="-fx-background-color: #7d1c15; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-style: bold;" text="Login with Microsoft" textFill="WHITE" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="547.0">
+      <font>
+         <Font name="Monospaced Bold" size="12.0" />
+      </font></Button>
 
 </AnchorPane>

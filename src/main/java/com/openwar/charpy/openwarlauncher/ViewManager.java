@@ -15,8 +15,13 @@ public class ViewManager {
 
     public void loadView(String fxmlFile) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/openwar/charpy/openwarlauncher/AuthPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/openwar/charpy/openwarlauncher/" + fxmlFile));
             Parent view = loader.load();
+            Object controller = loader.getController();
+            if (controller instanceof AuthPageController) {
+                ((AuthPageController) controller).setViewManager(this);
+            }
+
             root.getChildren().clear();
             root.getChildren().add(view);
         } catch (IOException e) {

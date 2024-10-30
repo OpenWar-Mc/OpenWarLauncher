@@ -75,10 +75,4 @@ public class LaunchMinecraft {
             }
         }
     }
-
-    private void addLibraryToClasspath(StringBuilder classPathBuilder, String relativePath) {
-        classPathBuilder.append(MINECRAFT_DIR).append("/").append(relativePath).append(File.pathSeparator);
-        System.out.println(classPathBuilder);
-    }
-
 }

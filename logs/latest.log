@@ -1605,3 +1605,492 @@ Caused by: net.minecraft.client.renderer.block.model.ModelBlockDefinition$Missin
 [12:22:00] [Client thread/INFO] [net.optifine.Log]: [OptiFine] (Reflector) Class not present: mods.betterfoliage.client.BetterFoliageClient
 [12:22:00] [Client thread/INFO] [STDOUT]: [com.pg85.otg.forge.asm.excluded.OTGClassTransformer:transform:91]: OTG-Core transforming: net.minecraftforge.common.DimensionManager : net/minecraftforge/common/DimensionManager
 [12:22:00] [Client thread/INFO] [Config]: [OptiFine] *** Reloading custom textures ***
+[12:22:04] [Client thread/INFO] [STDOUT]: [pl.asie.foamfix.coremod.FoamFixTransformer:spliceClasses:114]: Spliced in METHOD: com.pg85.otg.forge.gui.presets.OTGGuiPresetList.openWebLink
+[12:22:08] [Finalizer/WARN] [LoliASM]: Clearing LoliStringPool 1
+[12:22:08] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Starting integrated minecraft server version 1.12.2
+[12:22:08] [Server thread/INFO] [net.minecraft.server.integrated.IntegratedServer]: Generating keypair
+[12:22:09] [Server thread/INFO] [FML]: Injecting existing registry data into this server instance
+[12:22:09] [Server thread/INFO] [foamfix]: JEI search tree manager injection complete!
+[12:22:09] [Server thread/INFO] [FML]: Applying holder lookups
+[12:22:09] [Server thread/INFO] [FML]: Holder lookups applied
+[12:22:09] [Server thread/INFO] [FML]: Loading dimension 0 (New World) (net.minecraft.server.integrated.IntegratedServer@295d8f0f)
+[12:22:10] [Server thread/ERROR] [net.minecraft.advancements.AdvancementManager]: Parsing error loading built-in advancement minecraft:recipes/food/pumpkin_pie
+com.google.gson.JsonSyntaxException: Unknown recipe 'minecraft:pumpkin_pie'
+	at net.minecraft.advancements.AdvancementRewards$Deserializer.deserialize(AdvancementRewards.java:171) ~[l$a.class:?]
+	at net.minecraft.advancements.AdvancementRewards$Deserializer.deserialize(AdvancementRewards.java:147) ~[l$a.class:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter.read(TreeTypeAdapter.java:69) ~[TreeTypeAdapter.class:?]
+	at com.google.gson.Gson.fromJson(Gson.java:887) ~[Gson.class:?]
+	at com.google.gson.Gson.fromJson(Gson.java:952) ~[Gson.class:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter$GsonContextImpl.deserialize(TreeTypeAdapter.java:162) ~[TreeTypeAdapter$GsonContextImpl.class:?]
+	at net.minecraft.util.JsonUtils.deserializeClass(SourceFile:439) ~[rc.class:?]
+	at net.minecraft.util.JsonUtils.deserializeClass(SourceFile:455) ~[rc.class:?]
+	at net.minecraft.advancements.Advancement$Builder.deserialize(SourceFile:203) ~[i$a.class:?]
+	at net.minecraft.advancements.AdvancementManager$1.deserialize(AdvancementManager.java:50) ~[ns$1.class:?]
+	at net.minecraft.advancements.AdvancementManager$1.deserialize(AdvancementManager.java:46) ~[ns$1.class:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter.read(TreeTypeAdapter.java:69) ~[TreeTypeAdapter.class:?]
+	at net.minecraft.util.JsonUtils.gsonDeserialize(SourceFile:492) ~[rc.class:?]
+	at net.minecraft.util.JsonUtils.fromJson(SourceFile:532) ~[rc.class:?]
+	at net.minecraft.advancements.AdvancementManager.loadBuiltInAdvancements(AdvancementManager.java:184) [ns.class:?]
+	at net.minecraft.advancements.AdvancementManager.reload(AdvancementManager.java:68) [ns.class:?]
+	at net.minecraft.advancements.AdvancementManager.<init>(AdvancementManager.java:60) [ns.class:?]
+	at net.minecraft.world.WorldServer.init(WorldServer.java:156) [oo.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:133) [chd.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:233) [chd.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:486) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_431]
+[12:22:10] [Server thread/ERROR] [net.minecraft.advancements.AdvancementManager]: Parsing error loading built-in advancement minecraft:recipes/food/mushroom_stew
+com.google.gson.JsonSyntaxException: Unknown recipe 'minecraft:mushroom_stew'
+	at net.minecraft.advancements.AdvancementRewards$Deserializer.deserialize(AdvancementRewards.java:171) ~[l$a.class:?]
+	at net.minecraft.advancements.AdvancementRewards$Deserializer.deserialize(AdvancementRewards.java:147) ~[l$a.class:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter.read(TreeTypeAdapter.java:69) ~[TreeTypeAdapter.class:?]
+	at com.google.gson.Gson.fromJson(Gson.java:887) ~[Gson.class:?]
+	at com.google.gson.Gson.fromJson(Gson.java:952) ~[Gson.class:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter$GsonContextImpl.deserialize(TreeTypeAdapter.java:162) ~[TreeTypeAdapter$GsonContextImpl.class:?]
+	at net.minecraft.util.JsonUtils.deserializeClass(SourceFile:439) ~[rc.class:?]
+	at net.minecraft.util.JsonUtils.deserializeClass(SourceFile:455) ~[rc.class:?]
+	at net.minecraft.advancements.Advancement$Builder.deserialize(SourceFile:203) ~[i$a.class:?]
+	at net.minecraft.advancements.AdvancementManager$1.deserialize(AdvancementManager.java:50) ~[ns$1.class:?]
+	at net.minecraft.advancements.AdvancementManager$1.deserialize(AdvancementManager.java:46) ~[ns$1.class:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter.read(TreeTypeAdapter.java:69) ~[TreeTypeAdapter.class:?]
+	at net.minecraft.util.JsonUtils.gsonDeserialize(SourceFile:492) ~[rc.class:?]
+	at net.minecraft.util.JsonUtils.fromJson(SourceFile:532) ~[rc.class:?]
+	at net.minecraft.advancements.AdvancementManager.loadBuiltInAdvancements(AdvancementManager.java:184) [ns.class:?]
+	at net.minecraft.advancements.AdvancementManager.reload(AdvancementManager.java:68) [ns.class:?]
+	at net.minecraft.advancements.AdvancementManager.<init>(AdvancementManager.java:60) [ns.class:?]
+	at net.minecraft.world.WorldServer.init(WorldServer.java:156) [oo.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:133) [chd.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:233) [chd.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:486) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_431]
+[12:22:10] [Server thread/ERROR] [net.minecraft.advancements.AdvancementManager]: Parsing error loading built-in advancement minecraft:recipes/food/cookie
+com.google.gson.JsonSyntaxException: Unknown recipe 'minecraft:cookie'
+	at net.minecraft.advancements.AdvancementRewards$Deserializer.deserialize(AdvancementRewards.java:171) ~[l$a.class:?]
+	at net.minecraft.advancements.AdvancementRewards$Deserializer.deserialize(AdvancementRewards.java:147) ~[l$a.class:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter.read(TreeTypeAdapter.java:69) ~[TreeTypeAdapter.class:?]
+	at com.google.gson.Gson.fromJson(Gson.java:887) ~[Gson.class:?]
+	at com.google.gson.Gson.fromJson(Gson.java:952) ~[Gson.class:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter$GsonContextImpl.deserialize(TreeTypeAdapter.java:162) ~[TreeTypeAdapter$GsonContextImpl.class:?]
+	at net.minecraft.util.JsonUtils.deserializeClass(SourceFile:439) ~[rc.class:?]
+	at net.minecraft.util.JsonUtils.deserializeClass(SourceFile:455) ~[rc.class:?]
+	at net.minecraft.advancements.Advancement$Builder.deserialize(SourceFile:203) ~[i$a.class:?]
+	at net.minecraft.advancements.AdvancementManager$1.deserialize(AdvancementManager.java:50) ~[ns$1.class:?]
+	at net.minecraft.advancements.AdvancementManager$1.deserialize(AdvancementManager.java:46) ~[ns$1.class:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter.read(TreeTypeAdapter.java:69) ~[TreeTypeAdapter.class:?]
+	at net.minecraft.util.JsonUtils.gsonDeserialize(SourceFile:492) ~[rc.class:?]
+	at net.minecraft.util.JsonUtils.fromJson(SourceFile:532) ~[rc.class:?]
+	at net.minecraft.advancements.AdvancementManager.loadBuiltInAdvancements(AdvancementManager.java:184) [ns.class:?]
+	at net.minecraft.advancements.AdvancementManager.reload(AdvancementManager.java:68) [ns.class:?]
+	at net.minecraft.advancements.AdvancementManager.<init>(AdvancementManager.java:60) [ns.class:?]
+	at net.minecraft.world.WorldServer.init(WorldServer.java:156) [oo.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:133) [chd.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:233) [chd.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:486) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_431]
+[12:22:10] [Server thread/ERROR] [net.minecraft.advancements.AdvancementManager]: Parsing error loading built-in advancement minecraft:recipes/food/bread
+com.google.gson.JsonSyntaxException: Unknown recipe 'minecraft:bread'
+	at net.minecraft.advancements.AdvancementRewards$Deserializer.deserialize(AdvancementRewards.java:171) ~[l$a.class:?]
+	at net.minecraft.advancements.AdvancementRewards$Deserializer.deserialize(AdvancementRewards.java:147) ~[l$a.class:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter.read(TreeTypeAdapter.java:69) ~[TreeTypeAdapter.class:?]
+	at com.google.gson.Gson.fromJson(Gson.java:887) ~[Gson.class:?]
+	at com.google.gson.Gson.fromJson(Gson.java:952) ~[Gson.class:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter$GsonContextImpl.deserialize(TreeTypeAdapter.java:162) ~[TreeTypeAdapter$GsonContextImpl.class:?]
+	at net.minecraft.util.JsonUtils.deserializeClass(SourceFile:439) ~[rc.class:?]
+	at net.minecraft.util.JsonUtils.deserializeClass(SourceFile:455) ~[rc.class:?]
+	at net.minecraft.advancements.Advancement$Builder.deserialize(SourceFile:203) ~[i$a.class:?]
+	at net.minecraft.advancements.AdvancementManager$1.deserialize(AdvancementManager.java:50) ~[ns$1.class:?]
+	at net.minecraft.advancements.AdvancementManager$1.deserialize(AdvancementManager.java:46) ~[ns$1.class:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter.read(TreeTypeAdapter.java:69) ~[TreeTypeAdapter.class:?]
+	at net.minecraft.util.JsonUtils.gsonDeserialize(SourceFile:492) ~[rc.class:?]
+	at net.minecraft.util.JsonUtils.fromJson(SourceFile:532) ~[rc.class:?]
+	at net.minecraft.advancements.AdvancementManager.loadBuiltInAdvancements(AdvancementManager.java:184) [ns.class:?]
+	at net.minecraft.advancements.AdvancementManager.reload(AdvancementManager.java:68) [ns.class:?]
+	at net.minecraft.advancements.AdvancementManager.<init>(AdvancementManager.java:60) [ns.class:?]
+	at net.minecraft.world.WorldServer.init(WorldServer.java:156) [oo.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:133) [chd.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:233) [chd.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:486) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_431]
+[12:22:10] [Server thread/ERROR] [net.minecraft.advancements.AdvancementManager]: Parsing error loading built-in advancement minecraft:recipes/food/beetroot_soup
+com.google.gson.JsonSyntaxException: Unknown recipe 'minecraft:beetroot_soup'
+	at net.minecraft.advancements.AdvancementRewards$Deserializer.deserialize(AdvancementRewards.java:171) ~[l$a.class:?]
+	at net.minecraft.advancements.AdvancementRewards$Deserializer.deserialize(AdvancementRewards.java:147) ~[l$a.class:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter.read(TreeTypeAdapter.java:69) ~[TreeTypeAdapter.class:?]
+	at com.google.gson.Gson.fromJson(Gson.java:887) ~[Gson.class:?]
+	at com.google.gson.Gson.fromJson(Gson.java:952) ~[Gson.class:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter$GsonContextImpl.deserialize(TreeTypeAdapter.java:162) ~[TreeTypeAdapter$GsonContextImpl.class:?]
+	at net.minecraft.util.JsonUtils.deserializeClass(SourceFile:439) ~[rc.class:?]
+	at net.minecraft.util.JsonUtils.deserializeClass(SourceFile:455) ~[rc.class:?]
+	at net.minecraft.advancements.Advancement$Builder.deserialize(SourceFile:203) ~[i$a.class:?]
+	at net.minecraft.advancements.AdvancementManager$1.deserialize(AdvancementManager.java:50) ~[ns$1.class:?]
+	at net.minecraft.advancements.AdvancementManager$1.deserialize(AdvancementManager.java:46) ~[ns$1.class:?]
+	at com.google.gson.internal.bind.TreeTypeAdapter.read(TreeTypeAdapter.java:69) ~[TreeTypeAdapter.class:?]
+	at net.minecraft.util.JsonUtils.gsonDeserialize(SourceFile:492) ~[rc.class:?]
+	at net.minecraft.util.JsonUtils.fromJson(SourceFile:532) ~[rc.class:?]
+	at net.minecraft.advancements.AdvancementManager.loadBuiltInAdvancements(AdvancementManager.java:184) [ns.class:?]
+	at net.minecraft.advancements.AdvancementManager.reload(AdvancementManager.java:68) [ns.class:?]
+	at net.minecraft.advancements.AdvancementManager.<init>(AdvancementManager.java:60) [ns.class:?]
+	at net.minecraft.world.WorldServer.init(WorldServer.java:156) [oo.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.loadAllWorlds(IntegratedServer.java:133) [chd.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:233) [chd.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:486) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_431]
+[12:22:10] [Server thread/INFO] [net.minecraft.advancements.AdvancementList]: Loaded 596 advancements
+[12:22:10] [Server thread/INFO] [STDOUT]: [pl.asie.foamfix.coremod.FoamFixTransformer:spliceClasses:114]: Spliced in METHOD: net.minecraft.world.chunk.BlockStateContainer.func_186018_a
+[12:22:10] [Server thread/INFO] [LoliASM]: Took 10.74 ms to canonicalize Java's FilePermission caches.
+[12:22:10] [Server thread/INFO] [dsurround]: Creating STANDARD weather generator for dimension [overworld]
+[12:22:10] [Server thread/INFO] [FML]: Loading dimension -1 (New World) (net.minecraft.server.integrated.IntegratedServer@295d8f0f)
+[12:22:10] [Server thread/INFO] [LoliASM]: Took 7.129 ms to canonicalize Java's FilePermission caches.
+[12:22:10] [Server thread/INFO] [dsurround]: Creating NETHER weather generator for dimension [the_nether]
+[12:22:10] [Server thread/INFO] [FML]: Loading dimension 1 (New World) (net.minecraft.server.integrated.IntegratedServer@295d8f0f)
+[12:22:10] [Server thread/INFO] [LoliASM]: Took 5.545 ms to canonicalize Java's FilePermission caches.
+[12:22:10] [Server thread/INFO] [dsurround]: Creating NULL weather generator for dimension [the_end]
+[12:22:10] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing start region for level 0
+[12:22:11] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-17, 27] in dimension 0 (overworld) while populating chunk [-16, 27], causing cascading worldgen lag.
+[12:22:11] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:11] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-15, 9] in dimension 0 (overworld) while populating chunk [-15, 8], causing cascading worldgen lag.
+[12:22:11] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:11] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 12%
+[12:22:11] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-14, 3] in dimension 0 (overworld) while populating chunk [-13, 4], causing cascading worldgen lag.
+[12:22:11] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:11] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-15, 3] in dimension 0 (overworld) while populating chunk [-14, 3], causing cascading worldgen lag.
+[12:22:11] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:11] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-15, 2] in dimension 0 (overworld) while populating chunk [-14, 3], causing cascading worldgen lag.
+[12:22:11] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-13, 3] in dimension 0 (overworld) while populating chunk [-12, 4], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-14, 2] in dimension 0 (overworld) while populating chunk [-13, 3], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-15, 1] in dimension 0 (overworld) while populating chunk [-14, 2], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-16, 1] in dimension 0 (overworld) while populating chunk [-15, 1], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-16, 0] in dimension 0 (overworld) while populating chunk [-15, 1], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-17, 0] in dimension 0 (overworld) while populating chunk [-16, 0], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-18, 0] in dimension 0 (overworld) while populating chunk [-17, 0], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-18, -1] in dimension 0 (overworld) while populating chunk [-18, 0], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-19, -1] in dimension 0 (overworld) while populating chunk [-18, -1], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-19, -2] in dimension 0 (overworld) while populating chunk [-18, -1], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-20, -2] in dimension 0 (overworld) while populating chunk [-19, -2], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-20, -3] in dimension 0 (overworld) while populating chunk [-20, -2], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-21, -3] in dimension 0 (overworld) while populating chunk [-20, -3], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-21, -4] in dimension 0 (overworld) while populating chunk [-20, -3], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-19, -3] in dimension 0 (overworld) while populating chunk [-19, -2], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-20, -4] in dimension 0 (overworld) while populating chunk [-19, -3], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-21, -5] in dimension 0 (overworld) while populating chunk [-20, -4], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-17, -1] in dimension 0 (overworld) while populating chunk [-16, 0], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-18, -2] in dimension 0 (overworld) while populating chunk [-17, -1], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 20%
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-12, 3] in dimension 0 (overworld) while populating chunk [-11, 4], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-13, 2] in dimension 0 (overworld) while populating chunk [-12, 3], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-14, 1] in dimension 0 (overworld) while populating chunk [-13, 2], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-15, 0] in dimension 0 (overworld) while populating chunk [-14, 1], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-16, -1] in dimension 0 (overworld) while populating chunk [-15, 0], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-17, -2] in dimension 0 (overworld) while populating chunk [-16, -1], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-18, -3] in dimension 0 (overworld) while populating chunk [-17, -2], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-19, -4] in dimension 0 (overworld) while populating chunk [-18, -3], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:12] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-20, -5] in dimension 0 (overworld) while populating chunk [-19, -4], causing cascading worldgen lag.
+[12:22:12] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:13] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 34%
+[12:22:14] [Server thread/WARN] [FML]: Red Core loaded a new chunk [-6, 25] in dimension 0 (overworld) while populating chunk [-6, 24], causing cascading worldgen lag.
+[12:22:14] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:14] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 53%
+[12:22:15] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 74%
+[12:22:16] [Server thread/WARN] [FML]: Red Core loaded a new chunk [3, 3] in dimension 0 (overworld) while populating chunk [4, 4], causing cascading worldgen lag.
+[12:22:16] [Server thread/WARN] [FML]: Please report this to the mod's issue tracker. This log can be disabled in the Forge config.
+[12:22:16] [Finalizer/WARN] [LoliASM]: Clearing LoliStringPool 1
+[12:22:16] [Finalizer/WARN] [LoliASM]: Clearing LoliStringPool 1
+[12:22:16] [Finalizer/WARN] [LoliASM]: Clearing LoliStringPool 1
+[12:22:16] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Preparing spawn area: 93%
+[12:22:18] [Server thread/ERROR] [net.minecraft.server.MinecraftServer]: Encountered an unexpected exception
+net.minecraftforge.fml.common.LoaderExceptionModCrash: Caught exception from openWarHBMApi (openwarhbmapi)
+
+Caused by: java.lang.NoClassDefFoundError: org/slf4j/Logger
+	at net.dv8tion.jda.internal.entities.EntityBuilder.<clinit>(EntityBuilder.java:99) ~[EntityBuilder.class:?]
+	at net.dv8tion.jda.api.entities.Activity.playing(Activity.java:176) ~[Activity.class:?]
+	at com.openwar.hbmapi.Discord.DiscordBot.startBot(DiscordBot.java:15) ~[DiscordBot.class:?]
+	at com.openwar.hbmapi.Main.serverStarting(Main.java:41) ~[Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_431]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_431]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_431]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_431]
+	at net.minecraftforge.fml.common.FMLModContainer.handleModStateEvent(FMLModContainer.java:637) ~[forge-1.12.2-14.23.5.2860.jar:?]
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source) ~[?:?]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_431]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_431]
+	at com.google.common.eventbus.Subscriber.invokeSubscriberMethod(Subscriber.java:91) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Subscriber$SynchronizedSubscriber.invokeSubscriberMethod(Subscriber.java:150) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Subscriber$1.run(Subscriber.java:76) ~[guava-21.0.jar:?]
+	at com.google.common.util.concurrent.MoreExecutors$DirectExecutor.execute(MoreExecutors.java:399) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Subscriber.dispatchEvent(Subscriber.java:71) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Dispatcher$PerThreadQueuedDispatcher.dispatch(Dispatcher.java:116) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.EventBus.post(EventBus.java:217) ~[guava-21.0.jar:?]
+	at net.minecraftforge.fml.common.LoadController.sendEventToModContainer(LoadController.java:219) ~[LoadController.class:?]
+	at net.minecraftforge.fml.common.LoadController.propogateStateMessage(LoadController.java:197) ~[LoadController.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_431]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_431]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_431]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_431]
+	at com.google.common.eventbus.Subscriber.invokeSubscriberMethod(Subscriber.java:91) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Subscriber$SynchronizedSubscriber.invokeSubscriberMethod(Subscriber.java:150) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Subscriber$1.run(Subscriber.java:76) ~[guava-21.0.jar:?]
+	at com.google.common.util.concurrent.MoreExecutors$DirectExecutor.execute(MoreExecutors.java:399) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Subscriber.dispatchEvent(Subscriber.java:71) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Dispatcher$PerThreadQueuedDispatcher.dispatch(Dispatcher.java:116) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.EventBus.post(EventBus.java:217) ~[guava-21.0.jar:?]
+	at net.minecraftforge.fml.common.LoadController.distributeStateMessage(LoadController.java:136) ~[LoadController.class:?]
+	at net.minecraftforge.fml.common.Loader.serverStarting(Loader.java:797) ~[Loader.class:?]
+	at net.minecraftforge.fml.common.FMLCommonHandler.handleServerStarting(FMLCommonHandler.java:297) ~[FMLCommonHandler.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_431]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_431]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_431]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_431]
+	at net.optifine.reflect.Reflector.callBoolean(Reflector.java:857) ~[Reflector.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:241) ~[chd.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:486) [MinecraftServer.class:?]
+	at java.lang.Thread.run(Unknown Source) [?:1.8.0_431]
+Caused by: java.lang.ClassNotFoundException: org.slf4j.Logger
+	at net.minecraft.launchwrapper.LaunchClassLoader.findClass(LaunchClassLoader.java:191) ~[launchwrapper-1.12.jar:?]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_431]
+	at java.lang.ClassLoader.loadClass(Unknown Source) ~[?:1.8.0_431]
+	at net.dv8tion.jda.internal.entities.EntityBuilder.<clinit>(EntityBuilder.java:99) ~[EntityBuilder.class:?]
+	at net.dv8tion.jda.api.entities.Activity.playing(Activity.java:176) ~[Activity.class:?]
+	at com.openwar.hbmapi.Discord.DiscordBot.startBot(DiscordBot.java:15) ~[DiscordBot.class:?]
+	at com.openwar.hbmapi.Main.serverStarting(Main.java:41) ~[Main.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_431]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_431]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_431]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_431]
+	at net.minecraftforge.fml.common.FMLModContainer.handleModStateEvent(FMLModContainer.java:637) ~[forge-1.12.2-14.23.5.2860.jar:?]
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source) ~[?:?]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_431]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_431]
+	at com.google.common.eventbus.Subscriber.invokeSubscriberMethod(Subscriber.java:91) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Subscriber$SynchronizedSubscriber.invokeSubscriberMethod(Subscriber.java:150) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Subscriber$1.run(Subscriber.java:76) ~[guava-21.0.jar:?]
+	at com.google.common.util.concurrent.MoreExecutors$DirectExecutor.execute(MoreExecutors.java:399) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Subscriber.dispatchEvent(Subscriber.java:71) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Dispatcher$PerThreadQueuedDispatcher.dispatch(Dispatcher.java:116) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.EventBus.post(EventBus.java:217) ~[guava-21.0.jar:?]
+	at net.minecraftforge.fml.common.LoadController.sendEventToModContainer(LoadController.java:219) ~[LoadController.class:?]
+	at net.minecraftforge.fml.common.LoadController.propogateStateMessage(LoadController.java:197) ~[LoadController.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_431]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_431]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_431]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_431]
+	at com.google.common.eventbus.Subscriber.invokeSubscriberMethod(Subscriber.java:91) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Subscriber$SynchronizedSubscriber.invokeSubscriberMethod(Subscriber.java:150) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Subscriber$1.run(Subscriber.java:76) ~[guava-21.0.jar:?]
+	at com.google.common.util.concurrent.MoreExecutors$DirectExecutor.execute(MoreExecutors.java:399) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Subscriber.dispatchEvent(Subscriber.java:71) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.Dispatcher$PerThreadQueuedDispatcher.dispatch(Dispatcher.java:116) ~[guava-21.0.jar:?]
+	at com.google.common.eventbus.EventBus.post(EventBus.java:217) ~[guava-21.0.jar:?]
+	at net.minecraftforge.fml.common.LoadController.distributeStateMessage(LoadController.java:136) ~[LoadController.class:?]
+	at net.minecraftforge.fml.common.Loader.serverStarting(Loader.java:797) ~[Loader.class:?]
+	at net.minecraftforge.fml.common.FMLCommonHandler.handleServerStarting(FMLCommonHandler.java:297) ~[FMLCommonHandler.class:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_431]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_431]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[?:1.8.0_431]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[?:1.8.0_431]
+	at net.optifine.reflect.Reflector.callBoolean(Reflector.java:857) ~[Reflector.class:?]
+	at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:241) ~[chd.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:486) ~[MinecraftServer.class:?]
+	at java.lang.Thread.run(Unknown Source) ~[?:1.8.0_431]
+Caused by: java.lang.NullPointerException
+[12:22:18] [Server thread/ERROR] [net.minecraft.server.MinecraftServer]: This crash report has been saved to: C:\Users\mazin\AppData\Roaming\.openwar\crash-reports\crash-2024-10-30_12.22.18-server.txt
+[12:22:18] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Stopping server
+[12:22:18] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving players
+[12:22:18] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving worlds
+[12:22:18] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/overworld
+[12:22:20] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/the_nether
+[12:22:20] [Server thread/INFO] [net.minecraft.server.MinecraftServer]: Saving chunks for level 'New World'/the_end
+[12:22:21] [Server thread/INFO] [FML]: Unloading dimension 0
+[12:22:21] [Server thread/INFO] [FML]: Unloading dimension -1
+[12:22:21] [Server thread/INFO] [FML]: Unloading dimension 1
+[12:22:21] [Server thread/INFO] [foamfix]: JEI search tree manager injection complete!
+[12:22:21] [Server thread/INFO] [FML]: Applying holder lookups
+[12:22:21] [Server thread/INFO] [FML]: Holder lookups applied
+[12:22:21] [Server thread/INFO] [FML]: The state engine was in incorrect state SERVER_STARTING and forced into state SERVER_STOPPED. Errors may have been discarded.
+[12:22:22] [Client thread/FATAL] [LoliASM]: Minecraft ran into a problem! Report saved to: C:\Users\mazin\AppData\Roaming\.openwar\crash-reports\crash-2024-10-30_12.22.18-server.txt
+---- Minecraft Crash Report ----
+// Lolis deobfuscated this stacktrace using MCP's stable-39 mappings.
+// Surprise! Haha. Well, this is awkward.
+
+Time: 2024-10-30 12:22:22 CET
+Description: Exception in server tick loop
+
+net.minecraftforge.fml.common.LoaderExceptionModCrash: Caught exception from openWarHBMApi (openwarhbmapi)
+Caused by: java.lang.NoClassDefFoundError: org/slf4j/Logger
+    at net.dv8tion.jda.internal.entities.EntityBuilder.<clinit>(EntityBuilder.java:99)
+    at net.dv8tion.jda.api.entities.Activity.playing(Activity.java:176)
+    at com.openwar.hbmapi.Discord.DiscordBot.startBot(DiscordBot.java:15)
+    at com.openwar.hbmapi.Main.serverStarting(Main.java:41)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+    at java.lang.reflect.Method.invoke(Unknown Source)
+    at net.minecraftforge.fml.common.FMLModContainer.handleModStateEvent(FMLModContainer.java:637)
+    at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+    at java.lang.reflect.Method.invoke(Unknown Source)
+    at com.google.common.eventbus.Subscriber.invokeSubscriberMethod(Subscriber.java:91)
+    at com.google.common.eventbus.Subscriber$SynchronizedSubscriber.invokeSubscriberMethod(Subscriber.java:150)
+    at com.google.common.eventbus.Subscriber$1.run(Subscriber.java:76)
+    at com.google.common.util.concurrent.MoreExecutors$DirectExecutor.execute(MoreExecutors.java:399)
+    at com.google.common.eventbus.Subscriber.dispatchEvent(Subscriber.java:71)
+    at com.google.common.eventbus.Dispatcher$PerThreadQueuedDispatcher.dispatch(Dispatcher.java:116)
+    at com.google.common.eventbus.EventBus.post(EventBus.java:217)
+    at net.minecraftforge.fml.common.LoadController.sendEventToModContainer(LoadController.java:219)
+    at net.minecraftforge.fml.common.LoadController.propogateStateMessage(LoadController.java:197)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+    at java.lang.reflect.Method.invoke(Unknown Source)
+    at com.google.common.eventbus.Subscriber.invokeSubscriberMethod(Subscriber.java:91)
+    at com.google.common.eventbus.Subscriber$SynchronizedSubscriber.invokeSubscriberMethod(Subscriber.java:150)
+    at com.google.common.eventbus.Subscriber$1.run(Subscriber.java:76)
+    at com.google.common.util.concurrent.MoreExecutors$DirectExecutor.execute(MoreExecutors.java:399)
+    at com.google.common.eventbus.Subscriber.dispatchEvent(Subscriber.java:71)
+    at com.google.common.eventbus.Dispatcher$PerThreadQueuedDispatcher.dispatch(Dispatcher.java:116)
+    at com.google.common.eventbus.EventBus.post(EventBus.java:217)
+    at net.minecraftforge.fml.common.LoadController.distributeStateMessage(LoadController.java:136)
+    at net.minecraftforge.fml.common.Loader.serverStarting(Loader.java:797)
+    at net.minecraftforge.fml.common.FMLCommonHandler.handleServerStarting(FMLCommonHandler.java:297)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+    at java.lang.reflect.Method.invoke(Unknown Source)
+    at net.optifine.reflect.Reflector.callBoolean(Reflector.java:857)
+    at net.minecraft.server.integrated.IntegratedServer.init(IntegratedServer.java:241)
+    at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:486)
+    at java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.ClassNotFoundException: org.slf4j.Logger
+    at net.minecraft.launchwrapper.LaunchClassLoader.findClass(LaunchClassLoader.java:191)
+    at java.lang.ClassLoader.loadClass(Unknown Source)
+    at java.lang.ClassLoader.loadClass(Unknown Source)
+    ... 43 more
+Caused by: java.lang.NullPointerException
+
+No Mixin Metadata is found in the Stacktrace.
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- System Details --
+  Minecraft Version: 1.12.2
+  Operating System: Windows 11 (amd64) version 10.0
+  Java Version: 1.8.0_431, Oracle Corporation
+  Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+  Memory: 4528241088 bytes (4318 MB) / 7221542912 bytes (6887 MB) up to 15271460864 bytes (14564 MB)
+  JVM Flags: 3 total; -Xms1024M -Xmx16G -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+  IntCache: cache: 12, tcache: 98, allocated: 0, tallocated: 0
+  FML: MCP 9.42 LoliASM 5.20 Powered by Forge 14.23.5.2860 Optifine OptiFine_1.12.2_HD_U_G5 48 mods loaded, 47 mods active
+       States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+       
+       | State   | ID                   | Version                   | Source                                            | Signature                                |
+       |:------- |:-------------------- |:------------------------- |:------------------------------------------------- |:---------------------------------------- |
+       | LCHIJA  | minecraft            | 1.12.2                    | minecraft.jar                                     | None                                     |
+       | LCHIJA  | mcp                  | 9.42                      | minecraft.jar                                     | None                                     |
+       | LCHIJA  | FML                  | 8.0.99.99                 | forge-1.12.2-14.23.5.2860.jar                     | e3c3d50c7c986df74c645c0ac54639741c90a557 |
+       | LCHIJA  | forge                | 14.23.5.2860              | forge-1.12.2-14.23.5.2860.jar                     | e3c3d50c7c986df74c645c0ac54639741c90a557 |
+       | LCHIJA  | otgcore              | 1.12.2-v9.4               | minecraft.jar                                     | None                                     |
+       | LCHIJA  | mixinbooter          | 9.1                       | minecraft.jar                                     | None                                     |
+       | LCHIJA  | foamfixcore          | 7.7.4                     | minecraft.jar                                     | None                                     |
+       | LCHIJA  | redcore              | 0.5.1                     | !Red-Core-MC-1.7-1.12-0.5.1.jar                   | None                                     |
+       | LCHIJA  | badmobs              | 1.1.40                    | BadMobs-1.12.2-1.1.40.jar                         | d476d1b22b218a10d845928d1665d45fce301b27 |
+       | LCHIJA  | openterraingenerator | v9.4                      | OpenTerrainGenerator-1.12.2-v9.4.jar              | None                                     |
+       | LCHIJA  | biomebundle          | 5.1                       | Biome_Bundle-1.12.2-v6.1.jar                      | None                                     |
+       | LCHIJA  | carpentersblocks     | 3.4.0-poc.6               | Carpenters-Blocks-v3.4.0- MC 1.12.2-Minesters.jar | None                                     |
+       | LCHIJA  | crafttweaker         | 4.1.20                    | CraftTweaker2-1.12-4.1.20.675.jar                 | None                                     |
+       | LCHIJA  | jei                  | 4.15.0.268                | jei_1.12.2-4.15.0.268.jar                         | None                                     |
+       | LCHIJA  | spark                | 1.5.2                     | spark-forge1122.jar                               | None                                     |
+       | LCHIJA  | loliasm              | 5.20                      | censoredasm5.20.jar                               | None                                     |
+       | LCHIJA  | cfm                  | 6.4.1                     | cfm-legacy-1.12.2-6.4.1.jar                       | None                                     |
+       | LCHIJA  | chameleon            | 1.12-4.1.3                | Chameleon-1.12-4.1.3.jar                          | None                                     |
+       | LCHIJA  | ctm                  | MC1.12.2-1.0.2.31         | CTM-MC1.12.2-1.0.2.31 (1).jar                     | None                                     |
+       | LCHIJA  | chisel               | MC1.12.2-1.0.2.45         | Chisel-MC1.12.2-1.0.2.45 (2).jar                  | None                                     |
+       | LCHIJA  | chunkpregenerator    | 2.5.0                     | Chunk+Pregenerator-V1.12-2.5.7.jar                | None                                     |
+       | LCHIJA  | corpse               | 1.12.2-1.0.8              | corpse-1.12.2-1.0.8.jar                           | None                                     |
+       | LCHIJA  | ctgui                | 1.0.0                     | CraftTweaker2-1.12-4.1.20.675.jar                 | None                                     |
+       | LCHIJA  | crafttweakerjei      | 2.0.3                     | CraftTweaker2-1.12-4.1.20.675.jar                 | None                                     |
+       | LCHIJA  | custommainmenu       | 2.0.9.1                   | CustomMainMenu-MC1.12.2-2.0.9.1 (1).jar           | None                                     |
+       | LCHIJA  | customnpcs           | 1.12                      | CustomNPCs_1.12.2-(05Jul20).jar                   | None                                     |
+       | LCHIJA  | orelib               | 3.6.0.1                   | OreLib-1.12.2-3.6.0.1.jar                         | 7a2128d395ad96ceb9d9030fbd41d035b435753a |
+       | LCHIJA  | dsurround            | 3.6.2.0                   | DynamicSurroundings-1.12.2-3.6.2.0.jar            | None                                     |
+       | LCHIJA  | fastbench            | 1.7.2                     | FastWorkbench-1.12.2-1.7.2.jar                    | None                                     |
+       | LCHIJA  | foamfix              | @VERSION@                 | foamfix-0.10.15-1.12.2.jar                        | None                                     |
+       | LCHIJA  | hbm                  | NTM-Extended-1.12.2-2.0.1 | hbm-2.0.2.jar                                     | None                                     |
+       | LCHIJAE | openwarhbmapi        | 1.0-SNAPSHOT              | hbm-2.0.2.jar                                     | None                                     |
+       | LCHIJA  | hidenames            | 1.4.1                     | HideNames-1.4.1.jar                               | None                                     |
+       | LCHIJA  | invisiblights        | 3.0-8                     | invisiblights-3.2-10.jar                          | None                                     |
+       | LCHIJA  | ironchest            | 1.12.2-7.0.67.844         | ironchest-1.12.2-7.0.72.847.jar                   | None                                     |
+       | LCHIJA  | journeymap           | 1.12.2-5.7.1              | journeymap-1.12.2-5.7.1.jar                       | None                                     |
+       | LCHIJA  | mcheli               | 1.1.4                     | mcheli-1.1.4.jar                                  | None                                     |
+       | LCHIJA  | mclib                | 2.4.3                     | mclib-2.4.3-1.12.2.jar                            | None                                     |
+       | LCHIJA  | mwc                  | 0.1.8                     | Modern-Warfare-Cubed-0.1.8.jar                    | None                                     |
+       | LCHIJA  | openwarpc            | 1.0-SNAPSHOT              | OpenWar-RPC.jar                                   | None                                     |
+       | LCHIJA  | openwarprops         | 1.0-SNAPSHOT              | OpenWarProps-1.0-SNAPSHOT.jar                     | None                                     |
+       | LCHIJA  | harvestcraft         | 1.12.2u                   | Pam's+HarvestCraft+1.12.2u.jar                    | None                                     |
+       | LCHIJA  | jeid                 | 2.1.1                     | RoughlyEnoughIDs-2.1.1.jar                        | None                                     |
+       | LCHIJA  | storagedrawers       | 5.2.2                     | StorageDrawers-1.12.2-5.4.2.jar                   | None                                     |
+       | LCHIJA  | voicechat            | 1.12.2-2.4.10             | voicechat-forge-1.12.2-2.4.10.jar                 | None                                     |
+       | LCHIJA  | worldprotector       | 1.0                       | WorldProtector+(1.12).jar                         | None                                     |
+       | LCHIJA  | air_support          | 0.3.0                     | AirSupport-0.3.0.jar                              | None                                     |
+       | UD      | mclib_core           | 2.4.3                     | minecraft.jar                                     | None                                     |
+  Loaded coremods (and transformers): Modern Warfare Cubed Plugin (Modern-Warfare-Cubed-0.1.8.jar)
+                                        com.paneedah.mwc.asm.MWCClassTransformer
+                                      TransformLoader (DynamicSurroundings-1.12.2-3.6.2.0.jar)
+                                        
+                                      Do not report to Forge! (If you haven't disabled the FoamFix coremod, try disabling it in the config! Note that this bit of text will still appear.) (foamfix-0.10.15-1.12.2.jar)
+                                        pl.asie.foamfix.coremod.FoamFixTransformer
+                                      JustEnoughIDs Extension Plugin (RoughlyEnoughIDs-2.1.1.jar)
+                                        
+                                      OTGCorePlugin (OTG-Core.jar)
+                                        com.pg85.otg.forge.asm.excluded.OTGClassTransformer
+                                      McLib core mod (mclib-2.4.3-1.12.2.jar)
+                                        mchorse.mclib.core.McLibCMClassTransformer
+                                      CTMCorePlugin (CTM-MC1.12.2-1.0.2.31 (1).jar)
+                                        team.chisel.ctm.client.asm.CTMTransformer
+                                      Red Core (!Red-Core-MC-1.7-1.12-0.5.1.jar)
+                                        
+                                      LoliASM (censoredasm5.20.jar)
+                                        
+                                      MixinBooter (!mixinbooter-9.1.jar)
+  GL info: ~~ERROR~~ RuntimeException: No OpenGL context found in the current thread.
+  Suspected Mods: HBM's Nuclear Tech - Extended Edition (hbm), openWarHBMApi (openwarhbmapi), Forge Mod Loader (FML), Minecraft Forge (forge)
+  Profiler Position: N/A (disabled)
+  Player Count: 0 / 8; []
+  Type: Integrated Server (map_client.txt)
+  Is Modded: Definitely; Client brand changed to 'fml,forge'
+  Client Crashes Since Restart: 0
+  Integrated Server Crashes Since Restart: 1
+
+[12:22:22] [Client thread/ERROR] [net.minecraft.client.Minecraft]: ########## GL ERROR ##########
+[12:22:22] [Client thread/ERROR] [net.minecraft.client.Minecraft]: @ LoliASM GUI Loop
+[12:22:22] [Client thread/ERROR] [net.minecraft.client.Minecraft]: 1280: Invalid enum
+[12:22:33] [Client thread/INFO] [net.minecraft.client.Minecraft]: Stopping!
+[12:22:33] [Client thread/INFO] [net.minecraft.client.audio.SoundManager]: SoundSystem shutting down...
+[12:22:33] [Client thread/WARN] [net.minecraft.client.audio.SoundManager]: Author: Paul Lamb, www.paulscode.com

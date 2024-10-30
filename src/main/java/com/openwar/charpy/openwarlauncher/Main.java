@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -30,7 +31,11 @@ public class Main extends Application {
         if (!Files.exists(path)) {
             try {
                 Files.createDirectories(path);
-                System.out.println(path);
+                System.out.println("Directory created at: " + path);
+                File dir = path.toFile();
+                dir.setReadable(true, false);
+                dir.setWritable(true, false);
+                dir.setExecutable(true, false);
             } catch (IOException e) {
                 System.err.println("Failed to create directory: " + e.getMessage());
             }

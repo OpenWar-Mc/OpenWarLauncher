@@ -7,52 +7,78 @@ import java.util.List;
 
 public class LaunchMinecraft {
 
-        public void startMinecraft(String accessToken, String username, String uuid) throws IOException {
-            String gameDir = "C:\\Users\\mazin\\AppData\\Roaming\\.minecraft";
-            String assetsDir = gameDir + "\\assets";
-            String nativesDir = gameDir + "\\natives";
-            String forgeJarPath = "C:\\Users\\mazin\\AppData\\Roaming\\.minecraft\\versions\\1.12.2-forge-14.23.5.2860\\1.12.2-forge1.12.2-14.23.5.2860.jar";
+    private static final String MINECRAFT_DIR = "C:/Users/mazin/AppData/Roaming/.openwar";
 
-            List<String> command = new ArrayList<>();
-            command.add("java");
-            command.add("-Xmx4G"); // Allouer la mémoire, ajuster si nécessaire
-            command.add("-Djava.library.path=" + nativesDir); // Chemin pour les bibliothèques natives
-            command.add("-cp");
-            command.add(forgeJarPath);  // Ajouter le JAR principal de Forge au classpath
-            command.add("net.minecraft.client.Main");  // Classe de démarrage pour Forge
+    private static final String LIBRARY_PATH = MINECRAFT_DIR + "/librariesOP";
+    private static final String VERSION_PATH = MINECRAFT_DIR + "/versions/1.12.2";
 
-            // Arguments de démarrage Minecraft
-            command.add("--username");
-            command.add(username);
-            command.add("--version");
-            command.add("1.12.2");
-            command.add("--gameDir");
-            command.add(gameDir);
-            command.add("--assetsDir");
-            command.add(assetsDir);
-            command.add("--assetIndex");
-            command.add("1.12");
-            command.add("--uuid");
-            command.add(uuid);
-            command.add("--accessToken");
-            command.add(accessToken);
-            command.add("--userType");
-            command.add("legacy");
-            command.add("--tweakClass");  // Classe spéciale pour lancer Forge
-            command.add("net.minecraftforge.fml.common.launcher.FMLTweaker");
+    public void startMinecraft(String accessToken, String username, String uuid) throws IOException {
+        List<String> command = new ArrayList<>();
 
-            // Création du ProcessBuilder
-            ProcessBuilder processBuilder = new ProcessBuilder(command);
-            processBuilder.directory(new File(gameDir));
-            processBuilder.inheritIO();
+        command.add("C:/Program Files/Java/jre1.8.0_431/bin/java");
+        command.add("-Xms1024M");
+        command.add("-Xmx16G");
+        command.add("-XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump");
+        command.add("-Djava.library.path=" + VERSION_PATH + "/natives");
 
-            Process process = processBuilder.start();
+        StringBuilder classPathBuilder = new StringBuilder();
+        addAllJarsToClasspath(classPathBuilder, new File(LIBRARY_PATH));
+        command.add("-cp");
+        System.out.println(classPathBuilder);
+        command.add(classPathBuilder.toString());
 
-            try {
-                int exitCode = process.waitFor();
-                System.out.println("Minecraft exited with code: " + exitCode);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        command.add("net.minecraft.launchwrapper.Launch");
+        command.add("--title");
+        command.add("OpenWar - Stable");
+        command.add("--width");
+        command.add("854");
+        command.add("--height");
+        command.add("480");
+        command.add("--username");
+        command.add(username);
+        command.add("--version");
+        command.add("1.12.2-forge-1.12.2-14.23.5.2860");
+        command.add("--gameDir");
+        command.add(MINECRAFT_DIR);
+
+        command.add("--assetsDir");
+        command.add(MINECRAFT_DIR + "/assets/");
+
+        command.add("--assetIndex");
+        command.add("1.12");
+
+        command.add("--uuid");
+        command.add(uuid);
+        command.add("--accessToken");
+        command.add(accessToken);
+        command.add("--tweakClass");
+        command.add("net.minecraftforge.fml.common.launcher.FMLTweaker");
+        command.add("--versionType");
+        command.add("Forge");
+
+        ProcessBuilder processBuilder = new ProcessBuilder(command);
+        processBuilder.inheritIO();
+        processBuilder.start();
+    }
+
+    private void addAllJarsToClasspath(StringBuilder classPathBuilder, File directory) {
+        if (directory.isDirectory()) {
+            File[] files = directory.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isDirectory()) {
+                        addAllJarsToClasspath(classPathBuilder, file);
+                    } else if (file.getName().endsWith(".jar")) {
+                        classPathBuilder.append(file.getAbsolutePath()).append(File.pathSeparator);
+                    }
+                }
             }
         }
     }
+
+    private void addLibraryToClasspath(StringBuilder classPathBuilder, String relativePath) {
+        classPathBuilder.append(MINECRAFT_DIR).append("/").append(relativePath).append(File.pathSeparator);
+        System.out.println(classPathBuilder);
+    }
+
+}

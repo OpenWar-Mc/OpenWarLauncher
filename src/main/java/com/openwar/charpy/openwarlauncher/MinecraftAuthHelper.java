@@ -3,6 +3,8 @@ package com.openwar.charpy.openwarlauncher;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -150,6 +152,7 @@ public class MinecraftAuthHelper {
         String uuid = jsonObject.optString("id", "Unknown");
         String avatarUrl = "https://crafatar.com/renders/head/" + uuid;
         LaunchMinecraft lm = new LaunchMinecraft();
+        //Files.write(Paths.get(System.getenv("APPDATA"), ".openwar"), jsonObject.toString().getBytes());
         lm.startMinecraft(minecraftToken, username, uuid);
         return new PlayerProfile(username, avatarUrl);
     }

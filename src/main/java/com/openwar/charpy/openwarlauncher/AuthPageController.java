@@ -213,10 +213,9 @@ public class AuthPageController {
 
                     String accessToken = jsonResponse.getString("access_token");
 
-                    // Écrire la réponse dans le fichier .openwar
+
                     //Files.write(Paths.get(System.getenv("APPDATA"), ".openwar"), jsonResponse.toString().getBytes());
 
-                    // Appeler loadUserInfo ici avec le token d'accès
                     System.out.println("ACCESS TOKEN: " + accessToken);
                     controller.loadUserInfo(accessToken);
 

@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.PosixFilePermissions;
 
 
 public class Main extends Application {
@@ -32,10 +33,19 @@ public class Main extends Application {
             try {
                 Files.createDirectories(path);
                 System.out.println("Directory created at: " + path);
+
                 File dir = path.toFile();
                 dir.setReadable(true, false);
                 dir.setWritable(true, false);
                 dir.setExecutable(true, false);
+
+                // Test de création de fichier
+                Path testFile = path.resolve("test.txt");
+                Files.createFile(testFile);
+                System.out.println("Test file created at: " + testFile);
+                Files.delete(testFile);
+
+
             } catch (IOException e) {
                 System.err.println("Failed to create directory: " + e.getMessage());
             }
@@ -46,7 +56,7 @@ public class Main extends Application {
 
         // stage.setScene(new Scene(root, 1080, 720));
         stage.setScene(new Scene(root, 400, 640));
-        viewManager.loadView("AuthPage.fxml");
+        root.getChildren().add(authPage);
         stage.show();
     }
 

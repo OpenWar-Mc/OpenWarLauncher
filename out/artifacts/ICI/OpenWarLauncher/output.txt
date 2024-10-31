@@ -1,0 +1,31 @@
+Graphics Device initialization failed for :  d3d, sw
+Error initializing QuantumRenderer: no suitable pipeline found
+java.lang.RuntimeException: java.lang.RuntimeException: Error initializing QuantumRenderer: no suitable pipeline found
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumRenderer.getInstance(Unknown Source)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.init(Unknown Source)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.Toolkit.getToolkit(Unknown Source)
+	at javafx.graphics@23.0.1/com.sun.javafx.application.PlatformImpl.startup(Unknown Source)
+	at javafx.graphics@23.0.1/com.sun.javafx.application.PlatformImpl.startup(Unknown Source)
+	at javafx.graphics@23.0.1/com.sun.javafx.application.LauncherImpl.startToolkit(Unknown Source)
+	at javafx.graphics@23.0.1/com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(Unknown Source)
+	at javafx.graphics@23.0.1/com.sun.javafx.application.LauncherImpl.launchApplication(Unknown Source)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at java.base/sun.launcher.LauncherHelper$FXHelper.main(Unknown Source)
+Caused by: java.lang.RuntimeException: Error initializing QuantumRenderer: no suitable pipeline found
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumRenderer$PipelineRunnable.init(Unknown Source)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumRenderer$PipelineRunnable.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Exception in thread "main" java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at java.base/sun.launcher.LauncherHelper$FXHelper.main(Unknown Source)
+Caused by: java.lang.RuntimeException: No toolkit found
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.Toolkit.getToolkit(Unknown Source)
+	at javafx.graphics@23.0.1/com.sun.javafx.application.PlatformImpl.startup(Unknown Source)
+	at javafx.graphics@23.0.1/com.sun.javafx.application.PlatformImpl.startup(Unknown Source)
+	at javafx.graphics@23.0.1/com.sun.javafx.application.LauncherImpl.startToolkit(Unknown Source)
+	at javafx.graphics@23.0.1/com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(Unknown Source)
+	at javafx.graphics@23.0.1/com.sun.javafx.application.LauncherImpl.launchApplication(Unknown Source)
+	... 3 more
+Failed to launch JVM

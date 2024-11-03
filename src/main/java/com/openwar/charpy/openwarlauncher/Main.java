@@ -1,6 +1,7 @@
 package com.openwar.charpy.openwarlauncher;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -53,11 +54,21 @@ public class Main extends Application {
         stage.setTitle("OpenWar - Launcher | Authentication");
         stage.getIcons().add(new Image("https://openwar.fr/public/images/op.png"));
         stage.setResizable(false);
-
-        // stage.setScene(new Scene(root, 1080, 720));
         stage.setScene(new Scene(root, 400, 640));
         root.getChildren().add(authPage);
+        stage.setOnCloseRequest(event -> {
+            System.out.println("Fermeture de l'application...");
+            String command = "taskkill /F /IM java.exe";
+            try {
+                Runtime.getRuntime().exec(command);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Platform.exit();
+            System.exit(0);
+        });
         stage.show();
+
     }
 
     public static void main(String[] args) {

@@ -21,11 +21,12 @@ public class LaunchMinecraft {
 
     private static final String LIBRARY_PATH = MINECRAFT_DIR + "/librariesOP";
     private static final String VERSION_PATH = MINECRAFT_DIR + "/versions/1.12.2";
+    private static final String CUSTOM_JAVA = MINECRAFT_DIR + "/CustomJava/bin/java";
 
     public void startMinecraft(String accessToken, String username, String uuid) throws IOException {
         List<String> command = new ArrayList<>();
         progressBar.setProgress(10D);
-        command.add("java");
+        command.add(CUSTOM_JAVA);
         command.add("-Xms1024M");
         command.add("-Xmx16G");
         command.add("-XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump");

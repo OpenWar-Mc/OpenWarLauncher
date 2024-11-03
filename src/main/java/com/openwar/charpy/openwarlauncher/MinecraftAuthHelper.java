@@ -14,24 +14,30 @@ import org.json.JSONObject;
 
 public class MinecraftAuthHelper {
 
+
+    public PlayerProfile authenticateMcAPIOnly(String mcToken) throws Exception {
+        PlayerProfile playerProfile = getPlayerProfile(mcToken);
+        return playerProfile;
+    }
+
     public PlayerProfile authenticateAndFetchPlayerProfile(String accessToken) throws Exception {
-        Path path = Paths.get(System.getenv("APPDATA"), ".openwar", "launcher_profiles");
-        Files.createDirectories(path.getParent());
-        JSONObject playerData = new JSONObject();
-        playerData.put("token", accessToken);
-        Files.write(path, playerData.toString(4).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
         String xboxLiveToken = getXboxLiveToken(accessToken);
         String userHash = "";
         userHash = extractUserHash(xboxLiveToken);
-        System.out.println("User Hash: " + userHash);
-        System.out.println(" XBOX LIVE TOKEN : "+xboxLiveToken );
+        //System.out.println("User Hash: " + userHash);
+        //System.out.println(" XBOX LIVE TOKEN : "+xboxLiveToken );
         String xstsToken = getXstsToken(xboxLiveToken);
-        System.out.println(" XSTS TOKEN : "+xstsToken );
+        //System.out.println(" XSTS TOKEN : "+xstsToken );
         String minecraftToken = getMinecraftToken(xstsToken, xboxLiveToken, userHash);
-        System.out.println(" MINECRAFT TOKEN : "+minecraftToken );
+        //System.out.println(" MINECRAFT TOKEN : "+minecraftToken );
         String accessTokenMc = "";
         accessTokenMc = extractAccessTokenFromJson(minecraftToken);
 
+        Path path = Paths.get(System.getenv("APPDATA"), ".openwar", "launcher_profiles");
+        Files.createDirectories(path.getParent());
+        JSONObject playerData = new JSONObject();
+        playerData.put("token", accessTokenMc);
+        Files.write(path, playerData.toString(4).getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
         PlayerProfile playerProfile = getPlayerProfile(accessTokenMc);
         return playerProfile;
     }
@@ -88,9 +94,9 @@ public class MinecraftAuthHelper {
     private String extractUserHash(String json) {
         try {
             JSONObject jsonObject = new JSONObject(json);
-            System.out.println(jsonObject);
+            //System.out.println(jsonObject);
             JSONArray xuiArray = jsonObject.getJSONObject("DisplayClaims").getJSONArray("xui");
-            System.out.println(xuiArray);
+            //System.out.println(xuiArray);
             return xuiArray.getJSONObject(0).getString("uhs");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -123,8 +129,8 @@ public class MinecraftAuthHelper {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         xstsToken = extractTokenFromJson(xstsToken);
         xboxLiveToken = extractTokenFromJson(xboxLiveToken);
-        System.out.println("TOKEN XBOX: "+xboxLiveToken);
-        System.out.println("TOKEN XSTS: "+xstsToken);
+        //System.out.println("TOKEN XBOX: "+xboxLiveToken);
+        //System.out.println("TOKEN XSTS: "+xstsToken);
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setDoOutput(true);
@@ -152,7 +158,7 @@ public class MinecraftAuthHelper {
         }
 
         String response = readResponse(connection);
-        System.out.println("Response from Minecraft Profile API: " + response);
+        //System.out.println("Response from Minecraft Profile API: " + response);
 
         JSONObject jsonObject = new JSONObject(response);
         String username = jsonObject.optString("name", "Unknown");

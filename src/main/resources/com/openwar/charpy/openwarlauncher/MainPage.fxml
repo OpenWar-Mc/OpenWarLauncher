@@ -14,7 +14,7 @@
             <Image url="https://openwar.fr/public/images/background.png" />
         </image>
     </ImageView>
-    <Button fx:id="playerButton" depthTest="DISABLE" layoutX="366.0" layoutY="592.0" prefHeight="57.0" prefWidth="245.0" style="-fx-background-color: #7d1c15; -fx-background-radius: 10px; -fx-text-fill: white; -fx-font-size: 25px; -fx-font-weight: bold;" text="Play" textFill="WHITE" AnchorPane.leftAnchor="366.0" AnchorPane.topAnchor="592.0">
+    <Button fx:id="playerButton" depthTest="DISABLE" layoutX="418.0" layoutY="593.0" prefHeight="57.0" prefWidth="245.0" style="-fx-background-color: #7d1c15; -fx-background-radius: 10px; -fx-text-fill: white; -fx-font-size: 25px; -fx-font-weight: bold;" text="Play" textFill="WHITE" AnchorPane.leftAnchor="418.0" AnchorPane.topAnchor="593.0">
         <font>
             <Font name="Monospaced Bold" size="34.0" />
         </font>
@@ -26,9 +26,9 @@
         </effect>
     </Button>
 
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a7a7a75" height="293.0" layoutX="463.0" layoutY="166.0" stroke="#78787875" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="30.0" width="534.0" />
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a7a7a" height="57.0" layoutX="82.0" layoutY="107.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0000008a" height="333.0" layoutX="82.0" layoutY="202.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a7a7a75" height="293.0" layoutX="463.0" layoutY="166.0" opacity="0.0" stroke="#78787875" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="30.0" style="-fx-background-radius: 20px" width="534.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2b070785" height="57.0" layoutX="62.0" layoutY="108.0" stroke="#aa3d3d" strokeType="INSIDE" width="277.0" />
+   <Rectangle arcHeight="1.0" arcWidth="5.0" fill="#2b07078a" height="333.0" layoutX="119.0" layoutY="201.0" smooth="false" stroke="#aa3d3d" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" visible="false" width="163.0" />
    <Label layoutX="227.0" layoutY="21.0" prefHeight="43.0" prefWidth="626.0" text="Welcome on OpenWar - Stable Edition !" textFill="WHITE">
       <font>
          <Font name="System Bold" size="33.0" />
@@ -37,5 +37,25 @@
          <Glow level="0.82" />
       </effect>
    </Label>
-   <ProgressBar layoutX="67.0" layoutY="568.0" prefHeight="5.0" prefWidth="984.0" progress="0.0" />
+   <ProgressBar fx:id="progressBar" layoutX="49.0" layoutY="567.0" prefHeight="12.0" prefWidth="984.0" progress="0.0" visible="false" />
+   <Label fx:id="nameplayer" alignment="CENTER" layoutX="59.0" layoutY="113.0" prefHeight="47.0" prefWidth="283.0" text="_Charpy_" textFill="WHITE">
+      <font>
+         <Font size="32.0" />
+      </font>
+      <effect>
+         <Glow level="0.44" />
+      </effect></Label>
+   <ImageView fx:id="skinplayer" fitHeight="270.0" fitWidth="120.0" layoutX="141.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true" />
+   <Label layoutX="663.0" layoutY="117.0" prefHeight="39.0" prefWidth="87.0" text="NEWS:" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="27.0" />
+      </font>
+      <effect>
+         <Glow level="0.35" />
+      </effect>
+   </Label>
+   <TextFlow fx:id="newsText" layoutX="459.0" layoutY="177.0" prefHeight="292.0" prefWidth="178.0" />
+   <ImageView fx:id="newsIMG" fitHeight="292.0" fitWidth="368.0" layoutX="637.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 1000px" />
+   <Ellipse fill="#00000047" layoutX="201.0" layoutY="529.0" radiusX="100.0" radiusY="16.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+
 </AnchorPane>

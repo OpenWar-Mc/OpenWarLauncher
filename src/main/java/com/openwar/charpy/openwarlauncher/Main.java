@@ -24,7 +24,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         StackPane root = new StackPane();
         viewManager = new ViewManager(root);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AuthPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/openwar/charpy/openwarlauncher/AuthPage.fxml"));
         Parent authPage = loader.load();
         AuthPageController authPageController = loader.getController();
         authPageController.setViewManager(viewManager);

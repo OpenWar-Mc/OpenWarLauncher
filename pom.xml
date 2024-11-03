@@ -154,7 +154,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.openwar.charpy.openwarlauncher/com.openwar.charpy.openwarlauncher.Main
+                                com.openwar.charpy.openwarlauncher/com.openwar.charpy.openwarlauncher.Main_1
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

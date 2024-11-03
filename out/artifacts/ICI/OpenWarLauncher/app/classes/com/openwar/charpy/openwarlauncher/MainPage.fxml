@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openwar.charpy.openwarlauncher.MainPageController">
+    <ImageView fx:id="backgroundImage" fitHeight="768.0" fitWidth="1080.0" preserveRatio="true">
+        <image>
+            <Image url="https://openwar.fr/public/images/background.png" />
+        </image>
+    </ImageView>
+    <Button fx:id="playerButton" depthTest="DISABLE" layoutX="366.0" layoutY="592.0" prefHeight="57.0" prefWidth="245.0" style="-fx-background-color: #7d1c15; -fx-background-radius: 10px; -fx-text-fill: white; -fx-font-size: 25px; -fx-font-weight: bold;" text="Play" textFill="WHITE" AnchorPane.leftAnchor="366.0" AnchorPane.topAnchor="592.0">
+        <font>
+            <Font name="Monospaced Bold" size="34.0" />
+        </font>
+        <cursor>
+            <ImageCursor fx:constant="HAND" />
+        </cursor>
+        <effect>
+            <Glow />
+        </effect>
+    </Button>
+
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a7a7a75" height="293.0" layoutX="463.0" layoutY="166.0" stroke="#78787875" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="30.0" width="534.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a7a7a" height="57.0" layoutX="82.0" layoutY="107.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0000008a" height="333.0" layoutX="82.0" layoutY="202.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+   <Label layoutX="227.0" layoutY="21.0" prefHeight="43.0" prefWidth="626.0" text="Welcome on OpenWar - Stable Edition !" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="33.0" />
+      </font>
+      <effect>
+         <Glow level="0.82" />
+      </effect>
+   </Label>
+   <ProgressBar layoutX="67.0" layoutY="568.0" prefHeight="5.0" prefWidth="984.0" progress="0.0" />
+</AnchorPane>

@@ -50,20 +50,61 @@ public class AuthPageController {
     @FXML
     private void initialize() throws Exception {
         setupUI();
-        loadLocalAuthToken();
+        tryLoadingLocalToken();
         checkServerStatus("90.109.7.236", 25595);
     }
 
+    private void tryLoadingLocalToken() throws Exception {
+        Path tokenPath = Paths.get(System.getenv("APPDATA"), ".openwar\\launcher_profiles");
+        if (Files.exists(tokenPath)) {
+            String jsonString = new String(Files.readAllBytes(tokenPath));
+            JSONObject jsonObject = new JSONObject(jsonString);
+            String accessToken = jsonObject.optString("token", null);
+            if (accessToken != null) {
+                isConnected = minecraftApi(accessToken);
+                if (isConnected) {
+                    authButton.setText("Continue");
+                    authButton.setOnAction(event -> {
+                        try {
+                            loadMain(playerProfile);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                }
+                else {
+                    displayDisconnectedState();
+                }
+            }
+        }
+        if (!isConnected) {
+            displayDisconnectedState();
+        }
+    }
+    private boolean minecraftApi(String accessToken) throws Exception {
+        MinecraftAuthHelper ma = new MinecraftAuthHelper();
+        playerProfile = ma.authenticateMcAPIOnly(accessToken);
+        if (playerProfile != null) {
+            Platform.runLater(() -> {
+                statusLabel.setText("Connected");
+                usernameLabel.setText(playerProfile.getUsername());
+                avatar.setImage(new Image(playerProfile.getAvatarUrl()));
+            });
+            return true;
+        }
+        return false;
+    }
     private void setupUI() {
         backgroundImage.setImage(new Image("https://openwar.fr/public/images/background.png"));
         icon.setImage(new Image("https://openwar.fr/public/images/op.png"));
     }
-    private void loadMain() throws IOException {
+    private void loadMain(PlayerProfile playerProfile) throws IOException {
         Stage currentStage = (Stage) authButton.getScene().getWindow();
         currentStage.close();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/openwar/charpy/openwarlauncher/MainPage.fxml"));
         Parent authPage = loader.load();
+
         MainPageController controller = loader.getController();
         controller.setPlayerProfile(playerProfile);
         Stage authStage = new Stage();
@@ -73,29 +114,6 @@ public class AuthPageController {
         authStage.setScene(authScene);
         authStage.show();
 
-    }
-    private void loadLocalAuthToken() throws Exception {
-        Path tokenPath = Paths.get(System.getenv("APPDATA"), ".openwar\\launcher_profiles.json");
-        if (Files.exists(tokenPath)) {
-            String jsonString = new String(Files.readAllBytes(tokenPath));
-            JSONObject jsonObject = new JSONObject(jsonString);
-            String accessToken = jsonObject.optString("token", null);
-            if (accessToken != null) {
-                isConnected = true;
-                loadUserInfo(accessToken);
-                authButton.setText("Continue");
-                authButton.setOnAction(event -> {
-                    try {
-                        loadMain();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
-            }
-        }
-        if (!isConnected) {
-            displayDisconnectedState();
-        }
     }
 
     private void displayDisconnectedState() {
@@ -142,11 +160,20 @@ public class AuthPageController {
     private void loadUserInfo(String accessToken) throws Exception {
         MinecraftAuthHelper ma = new MinecraftAuthHelper();
         playerProfile = ma.authenticateAndFetchPlayerProfile(accessToken);
+        System.out.println(playerProfile.getUsername()+playerProfile.getUuid());
 
         Platform.runLater(() -> {
             statusLabel.setText("Connected");
             usernameLabel.setText(playerProfile.getUsername());
             avatar.setImage(new Image(playerProfile.getAvatarUrl()));
+            authButton.setText("Continue");
+            authButton.setOnAction(event -> {
+                try {
+                    loadMain(playerProfile);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
         });
     }
     private void authenticateWithMicrosoft() {

@@ -5,21 +5,21 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import javafx.application.Platform;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
-import javafx.stage.Stage;
 
 public class InstallOpenWar {
     private ProgressBar progressBar;
     private static final String MINECRAFT_DIR = String.valueOf(Paths.get(System.getenv("APPDATA")));
     private static final String ZIP_URL = "https://openwar.fr/OPENWAR/openwar.zip";
     private static final String ZIP_FILE = MINECRAFT_DIR + "/openwar.zip";
+    private static final String VERSION_DIR = MINECRAFT_DIR + "/.openwar/versionss/1.12.2";
+    private static final String JSON_URL = "https://piston-meta.mojang.com/v1/packages/832d95b9f40699d4961394dcf6cf549e65f15dc5/1.12.2.json";
 
     public InstallOpenWar(ProgressBar progressBar) {
         this.progressBar = progressBar;
@@ -30,9 +30,23 @@ public class InstallOpenWar {
             downloadFile(ZIP_URL, ZIP_FILE);
             Platform.runLater(() -> progressBar.setProgress(50D));
             extractZip(ZIP_FILE, MINECRAFT_DIR);
+            Platform.runLater(() -> progressBar.setProgress(75D));
+
+            // Créer le répertoire pour les versions si cela n'existe pas
+            Files.createDirectories(Paths.get(VERSION_DIR));
+
+            // Récupérer le hash pour le fichier 1.12.2.jar
+            String jarHash = getJarHash();
+            if (jarHash == null) {
+                throw new IOException("Impossible de récupérer le hash pour 1.12.2.jar");
+            }
+
+            // Télécharger les fichiers spécifiques de la version 1.12.2
+            downloadFile("https://launcher.mojang.com/v1/objects/" + jarHash + "/1.12.2.jar", VERSION_DIR + "/1.12.2.jar");
+            downloadFile(JSON_URL, VERSION_DIR + "/1.12.2.json");
             Platform.runLater(() -> progressBar.setProgress(100D));
 
-
+            // Supprimer le fichier ZIP
             File zipFile = new File(ZIP_FILE);
             if (zipFile.exists()) {
                 boolean deleted = zipFile.delete();
@@ -48,6 +62,80 @@ public class InstallOpenWar {
             e.printStackTrace();
             progressBar.setProgress(-1D);
         }
+    }
+    private String getJarHash() throws IOException {
+        // URL pour le fichier JSON de la version 1.12.2
+        String versionDetailsUrl = "https://piston-meta.mojang.com/v1/packages/832d95b9f40699d4961394dcf6cf549e65f15dc5/1.12.2.json";
+
+        URL url = new URL(versionDetailsUrl);
+        HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+        int responseCode = httpConn.getResponseCode();
+
+        if (responseCode != HttpURLConnection.HTTP_OK) {
+            throw new IOException("Impossible de récupérer les détails de la version. Code de réponse : " + responseCode);
+        }
+
+        StringBuilder jsonResponse = new StringBuilder();
+        try (Scanner scanner = new Scanner(httpConn.getInputStream())) {
+            while (scanner.hasNextLine()) {
+                jsonResponse.append(scanner.nextLine());
+            }
+        }
+
+        // Obtenir le hash du fichier JAR
+        String jsonString = jsonResponse.toString();
+        int downloadsIndex = jsonString.indexOf("\"downloads\":");
+        if (downloadsIndex == -1) {
+            throw new IOException("Downloads non trouvés dans les détails de la version.");
+        }
+
+        int clientIndex = jsonString.indexOf("\"client\":", downloadsIndex);
+        if (clientIndex == -1) {
+            throw new IOException("Client non trouvé dans les détails de la version.");
+        }
+
+        int sha1Index = jsonString.indexOf("\"sha1\":", clientIndex);
+        if (sha1Index == -1) {
+            throw new IOException("SHA1 non trouvé dans les détails de la version.");
+        }
+
+        int startIndex = jsonString.indexOf("\"", sha1Index + 7) + 1; // +7 pour passer "sha1":
+        int endIndex = jsonString.indexOf("\"", startIndex);
+        return jsonString.substring(startIndex, endIndex);
+    }
+
+    private String getVersionDetails(String versionUrl) throws IOException {
+        URL url = new URL(versionUrl);
+        HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+        int responseCode = httpConn.getResponseCode();
+
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            StringBuilder jsonResponse = new StringBuilder();
+            try (Scanner scanner = new Scanner(httpConn.getInputStream())) {
+                while (scanner.hasNextLine()) {
+                    jsonResponse.append(scanner.nextLine());
+                }
+            }
+
+            // Obtenir le hash du fichier JAR
+            String jsonString = jsonResponse.toString();
+            int downloadsIndex = jsonString.indexOf("\"downloads\":");
+            if (downloadsIndex != -1) {
+                int clientIndex = jsonString.indexOf("\"client\":", downloadsIndex);
+                if (clientIndex != -1) {
+                    int sha1Index = jsonString.indexOf("\"sha1\":", clientIndex);
+                    if (sha1Index != -1) {
+                        int startIndex = jsonString.indexOf("\"", sha1Index + 7) + 1; // +7 pour passer "sha1":
+                        int endIndex = jsonString.indexOf("\"", startIndex);
+                        return jsonString.substring(startIndex, endIndex);
+                    }
+                }
+            }
+        } else {
+            throw new IOException("Impossible de récupérer les détails de la version. Code de réponse : " + responseCode);
+        }
+        httpConn.disconnect();
+        return null;
     }
     private void downloadFile(String fileURL, String saveDir) throws IOException {
         URL url = new URL(fileURL);
@@ -65,7 +153,7 @@ public class InstallOpenWar {
                 while ((bytesRead = inputStream.read(buffer)) != -1) {
                     outputStream.write(buffer, 0, bytesRead);
                     totalBytesRead += bytesRead;
-                    double progress = totalBytesRead / fileSize * 50D;
+                    double progress = 50D + (totalBytesRead / (double) fileSize) * 25D; // 50% pour le zip et 25% pour chaque fichier
                     Platform.runLater(() -> progressBar.setProgress(progress));
                 }
             }

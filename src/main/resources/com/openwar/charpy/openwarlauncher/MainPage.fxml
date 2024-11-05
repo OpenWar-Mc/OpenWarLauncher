@@ -13,6 +13,9 @@
         <image>
             <Image url="https://openwar.fr/public/images/background.png" />
         </image>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
     </ImageView>
     <Button fx:id="playerButton" depthTest="DISABLE" layoutX="418.0" layoutY="593.0" prefHeight="57.0" prefWidth="245.0" style="-fx-background-color: #7d1c15; -fx-background-radius: 10px; -fx-text-fill: white; -fx-font-size: 25px; -fx-font-weight: bold;" text="Play" textFill="WHITE" AnchorPane.leftAnchor="418.0" AnchorPane.topAnchor="593.0">
         <font>
@@ -57,5 +60,13 @@
    <TextFlow fx:id="newsText" layoutX="459.0" layoutY="177.0" prefHeight="292.0" prefWidth="178.0" />
    <ImageView fx:id="newsIMG" fitHeight="292.0" fitWidth="368.0" layoutX="637.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 1000px" />
    <Ellipse fill="#00000047" layoutX="201.0" layoutY="529.0" radiusX="100.0" radiusY="16.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+   <Button fx:id="settings" layoutX="19.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #7d1c15; -fx-background-radius: 10px; -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;" text="Settings" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="13.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </Button>
 
 </AnchorPane>

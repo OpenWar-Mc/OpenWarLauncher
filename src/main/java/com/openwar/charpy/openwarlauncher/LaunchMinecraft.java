@@ -1,5 +1,6 @@
 package com.openwar.charpy.openwarlauncher;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;

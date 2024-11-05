@@ -64,7 +64,6 @@ public class InstallOpenWar {
         }
     }
     private String getJarHash() throws IOException {
-        // URL pour le fichier JSON de la version 1.12.2
         String versionDetailsUrl = "https://piston-meta.mojang.com/v1/packages/832d95b9f40699d4961394dcf6cf549e65f15dc5/1.12.2.json";
 
         URL url = new URL(versionDetailsUrl);
@@ -82,7 +81,6 @@ public class InstallOpenWar {
             }
         }
 
-        // Obtenir le hash du fichier JAR
         String jsonString = jsonResponse.toString();
         int downloadsIndex = jsonString.indexOf("\"downloads\":");
         if (downloadsIndex == -1) {
@@ -99,7 +97,7 @@ public class InstallOpenWar {
             throw new IOException("SHA1 non trouvé dans les détails de la version.");
         }
 
-        int startIndex = jsonString.indexOf("\"", sha1Index + 7) + 1; // +7 pour passer "sha1":
+        int startIndex = jsonString.indexOf("\"", sha1Index + 7) + 1;
         int endIndex = jsonString.indexOf("\"", startIndex);
         return jsonString.substring(startIndex, endIndex);
     }
@@ -125,7 +123,7 @@ public class InstallOpenWar {
                 if (clientIndex != -1) {
                     int sha1Index = jsonString.indexOf("\"sha1\":", clientIndex);
                     if (sha1Index != -1) {
-                        int startIndex = jsonString.indexOf("\"", sha1Index + 7) + 1; // +7 pour passer "sha1":
+                        int startIndex = jsonString.indexOf("\"", sha1Index + 7) + 1;
                         int endIndex = jsonString.indexOf("\"", startIndex);
                         return jsonString.substring(startIndex, endIndex);
                     }
@@ -153,7 +151,7 @@ public class InstallOpenWar {
                 while ((bytesRead = inputStream.read(buffer)) != -1) {
                     outputStream.write(buffer, 0, bytesRead);
                     totalBytesRead += bytesRead;
-                    double progress = 50D + (totalBytesRead / (double) fileSize) * 25D; // 50% pour le zip et 25% pour chaque fichier
+                    double progress = 50D + (totalBytesRead / (double) fileSize) * 25D;
                     Platform.runLater(() -> progressBar.setProgress(progress));
                 }
             }
@@ -167,17 +165,11 @@ public class InstallOpenWar {
         try (ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(zipFilePath))) {
             ZipEntry entry;
             while ((entry = zipInputStream.getNextEntry()) != null) {
-                // Crée le chemin d'accès complet pour l'extraction
                 File newFile = new File(destDir, entry.getName());
-
                 if (entry.isDirectory()) {
-                    // Si c'est un dossier, créez-le
                     newFile.mkdirs();
                 } else {
-                    // Créez le dossier parent si nécessaire
                     new File(newFile.getParent()).mkdirs();
-
-                    // Écrire le contenu du fichier dans le nouveau fichier
                     try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(newFile))) {
                         byte[] buffer = new byte[4096];
                         int bytesRead;

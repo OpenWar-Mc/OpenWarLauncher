@@ -203,6 +203,7 @@ public class AuthPageController {
         HttpServer server = HttpServer.create(new InetSocketAddress(3000), 0);
         server.createContext("/auth/redirect", new AuthHandler(this));
         server.start();
+        //TODO FERMER LE SERVER WEB
     }
 
     static class AuthHandler implements HttpHandler {

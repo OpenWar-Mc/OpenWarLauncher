@@ -94,7 +94,7 @@ public class MainPageController {
     private void handlePlayButtonAction() throws IOException {
         progressBar.setVisible(true);
         LaunchMinecraft lm = new LaunchMinecraft(progressBar);
-        lm.startMinecraft(playerProfile.getUsername(),playerProfile.getUuid(),playerProfile.getToken());
+        lm.startMinecraft(playerProfile.getToken(),playerProfile.getUsername(),playerProfile.getUuid());
     }
     private void loadNewsText() {
         String urlIMG = "https://openwar.fr/public/news/newsIMG.png";

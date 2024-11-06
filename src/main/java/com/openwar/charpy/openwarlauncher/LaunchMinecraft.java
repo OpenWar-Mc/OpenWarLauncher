@@ -43,14 +43,13 @@ public class LaunchMinecraft {
         command.add("net.minecraft.launchwrapper.Launch");
         command.add("--gameDir");
         command.add(MINECRAFT_DIR);
-        command.add("--title");
-        command.add("OpenWar - Stable");
         command.add("--width");
         command.add("854");
         command.add("--height");
         command.add("480");
         command.add("--username");
         command.add(username);
+        System.out.println("Username of player" +username);
         command.add("--version");
         command.add("1.12.2-forge-1.12.2-14.23.5.2860");
         progressBar.setProgress(60D);
@@ -62,8 +61,10 @@ public class LaunchMinecraft {
 
         command.add("--uuid");
         command.add(uuid);
+        System.out.println("UUID of Player: "+uuid);
         command.add("--accessToken");
         command.add(accessToken);
+        System.out.println("TOKEN: "+accessToken);
         command.add("--tweakClass");
         command.add("net.minecraftforge.fml.common.launcher.FMLTweaker");
         command.add("--versionType");

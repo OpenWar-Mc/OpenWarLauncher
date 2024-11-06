@@ -40,7 +40,6 @@ public class Main extends Application {
                 dir.setWritable(true, false);
                 dir.setExecutable(true, false);
 
-                // Test de création de fichier
                 Path testFile = path.resolve("test.txt");
                 Files.createFile(testFile);
                 System.out.println("Test file created at: " + testFile);
@@ -56,17 +55,6 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.setScene(new Scene(root, 400, 640));
         root.getChildren().add(authPage);
-        stage.setOnCloseRequest(event -> {
-            System.out.println("Fermeture de l'application...");
-            String command = "taskkill /F /IM java.exe";
-            try {
-                Runtime.getRuntime().exec(command);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            Platform.exit();
-            System.exit(0);
-        });
         stage.show();
 
     }

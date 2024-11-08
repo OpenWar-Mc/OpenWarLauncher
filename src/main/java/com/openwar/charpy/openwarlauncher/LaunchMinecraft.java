@@ -27,7 +27,7 @@ public class LaunchMinecraft {
     public void startMinecraft(String accessToken, String username, String uuid) throws IOException {
         List<String> command = new ArrayList<>();
         progressBar.setProgress(10D);
-        command.add("C:\\Program Files\\Java\\jre1.8.0_421\\bin\\java");
+        command.add(CUSTOM_JAVA);
         command.add("-Xms1024M");
         command.add("-Xmx16G");
         command.add("-XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump");

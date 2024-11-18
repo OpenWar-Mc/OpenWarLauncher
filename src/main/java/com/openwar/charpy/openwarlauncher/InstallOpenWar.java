@@ -31,7 +31,7 @@ public class InstallOpenWar {
             Platform.runLater(() -> progressBar.setProgress(50D));
             extractZip(ZIP_FILE, MINECRAFT_DIR);
             Platform.runLater(() -> progressBar.setProgress(75D));
-            
+
             Files.createDirectories(Paths.get(VERSION_DIR));
             String jarHash = getJarHash();
             if (jarHash == null) {

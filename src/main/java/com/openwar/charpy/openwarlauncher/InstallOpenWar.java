@@ -31,22 +31,16 @@ public class InstallOpenWar {
             Platform.runLater(() -> progressBar.setProgress(50D));
             extractZip(ZIP_FILE, MINECRAFT_DIR);
             Platform.runLater(() -> progressBar.setProgress(75D));
-
-            // Créer le répertoire pour les versions si cela n'existe pas
+            
             Files.createDirectories(Paths.get(VERSION_DIR));
-
-            // Récupérer le hash pour le fichier 1.12.2.jar
             String jarHash = getJarHash();
             if (jarHash == null) {
                 throw new IOException("Impossible de récupérer le hash pour 1.12.2.jar");
             }
-
-            // Télécharger les fichiers spécifiques de la version 1.12.2
             downloadFile("https://launcher.mojang.com/v1/objects/" + jarHash + "/1.12.2.jar", VERSION_DIR + "/1.12.2.jar");
             downloadFile(JSON_URL, VERSION_DIR + "/1.12.2.json");
             Platform.runLater(() -> progressBar.setProgress(100D));
 
-            // Supprimer le fichier ZIP
             File zipFile = new File(ZIP_FILE);
             if (zipFile.exists()) {
                 boolean deleted = zipFile.delete();
@@ -114,8 +108,6 @@ public class InstallOpenWar {
                     jsonResponse.append(scanner.nextLine());
                 }
             }
-
-            // Obtenir le hash du fichier JAR
             String jsonString = jsonResponse.toString();
             int downloadsIndex = jsonString.indexOf("\"downloads\":");
             if (downloadsIndex != -1) {

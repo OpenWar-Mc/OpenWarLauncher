@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openwar.charpy.openwarlauncher.MainPageController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openwar.charpy.openwarlauncher.controller.MainPageController">
     <ImageView fx:id="backgroundImage" fitHeight="768.0" fitWidth="1080.0" preserveRatio="true">
         <image>
             <Image url="https://openwar.fr/public/images/background.png" />

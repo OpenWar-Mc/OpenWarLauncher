@@ -1,5 +1,9 @@
-package com.openwar.charpy.openwarlauncher;
+package com.openwar.charpy.openwarlauncher.controller;
 
+import com.openwar.charpy.openwarlauncher.utils.AuthService;
+import com.openwar.charpy.openwarlauncher.utils.MinecraftAuthHelper;
+import com.openwar.charpy.openwarlauncher.utils.PlayerProfile;
+import com.openwar.charpy.openwarlauncher.utils.ViewManager;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -112,6 +116,10 @@ public class AuthPageController {
         authStage.getIcons().add(new Image("https://openwar.fr/public/images/op.png"));
         Scene authScene = new Scene(authPage, 1080, 720);
         authStage.setScene(authScene);
+        authStage.setOnCloseRequest(event -> {
+            Platform.exit();
+            System.exit(0);
+        });
         authStage.show();
 
     }

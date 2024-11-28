@@ -1,5 +1,8 @@
-package com.openwar.charpy.openwarlauncher;
+package com.openwar.charpy.openwarlauncher.controller;
 
+import com.openwar.charpy.openwarlauncher.utils.InstallOpenWar;
+import com.openwar.charpy.openwarlauncher.utils.LaunchMinecraft;
+import com.openwar.charpy.openwarlauncher.utils.PlayerProfile;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,7 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -55,7 +57,7 @@ public class MainPageController {
     public void initialize() {
         loadNewsText();
         backgroundImage.setImage(new Image("https://openwar.fr/public/images/background.png"));
-        Path options = Paths.get(System.getenv("APPDATA"), ".openwar\\options.txt");
+        Path options = Paths.get(System.getenv("APPDATA"), ".openwar\\versions\\1.12.2-forge-14.23.5.2860\\1.12.2-forge-14.23.5.2860.jar");
         if (!Files.exists(options)) {
             playerButton.setText("Download");
             playerButton.setOnAction(event -> {
@@ -71,6 +73,7 @@ public class MainPageController {
             });
         }
     }
+
     private void installingMinecraft() {
         progressBar.setVisible(true);
         InstallOpenWar installer = new InstallOpenWar(progressBar);

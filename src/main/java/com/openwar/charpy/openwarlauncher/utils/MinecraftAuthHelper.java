@@ -1,4 +1,4 @@
-package com.openwar.charpy.openwarlauncher;
+package com.openwar.charpy.openwarlauncher.utils;
 
 import java.io.*;
 import java.net.HttpURLConnection;

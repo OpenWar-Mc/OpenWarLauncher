@@ -18,7 +18,13 @@ module com.openwar.charpy.openwarlauncher {
     requires java.net.http;
     requires jdk.httpserver;
     requires org.json;
+    requires org.jsoup;
+    requires com.google.gson;
 
     opens com.openwar.charpy.openwarlauncher to javafx.fxml;
     exports com.openwar.charpy.openwarlauncher;
+    exports com.openwar.charpy.openwarlauncher.controller;
+    opens com.openwar.charpy.openwarlauncher.controller to javafx.fxml;
+    exports com.openwar.charpy.openwarlauncher.utils;
+    opens com.openwar.charpy.openwarlauncher.utils to javafx.fxml;
 }

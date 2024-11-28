@@ -105,23 +105,7 @@ public class AuthPageController {
     private void loadMain(PlayerProfile playerProfile) throws IOException {
         Stage currentStage = (Stage) authButton.getScene().getWindow();
         currentStage.close();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/openwar/charpy/openwarlauncher/MainPage.fxml"));
-        Parent authPage = loader.load();
-
-        MainPageController controller = loader.getController();
-        controller.setPlayerProfile(playerProfile);
-        Stage authStage = new Stage();
-        authStage.setTitle("OpenWar - Launcher | Stable Edition v1.0.0");
-        authStage.getIcons().add(new Image("https://openwar.fr/public/images/op.png"));
-        Scene authScene = new Scene(authPage, 1080, 720);
-        authStage.setScene(authScene);
-        authStage.setOnCloseRequest(event -> {
-            Platform.exit();
-            System.exit(0);
-        });
-        authStage.show();
-
+        viewManager.showPage("MainPage.fxml", "OpenWar - Launcher | Stable Edition v1.3.2", 1080, 750, playerProfile);
     }
 
     private void displayDisconnectedState() {

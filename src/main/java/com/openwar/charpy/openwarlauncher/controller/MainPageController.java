@@ -3,6 +3,7 @@ package com.openwar.charpy.openwarlauncher.controller;
 import com.openwar.charpy.openwarlauncher.utils.InstallOpenWar;
 import com.openwar.charpy.openwarlauncher.utils.LaunchMinecraft;
 import com.openwar.charpy.openwarlauncher.utils.PlayerProfile;
+import com.openwar.charpy.openwarlauncher.utils.ViewManager;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
@@ -40,11 +42,14 @@ public class MainPageController {
     private Label nameplayer;
 
     @FXML
+    private Button settings;
+    @FXML
     private ProgressBar progressBar;
     @FXML
     private TextFlow newsText;
 
     private PlayerProfile playerProfile;
+    private ViewManager viewManager;
 
 
     public void setPlayerProfile(PlayerProfile playerProfile) {
@@ -58,6 +63,9 @@ public class MainPageController {
         loadNewsText();
         backgroundImage.setImage(new Image("https://openwar.fr/public/images/background.png"));
         Path options = Paths.get(System.getenv("APPDATA"), ".openwar\\versions\\1.12.2-forge-14.23.5.2860\\1.12.2-forge-14.23.5.2860.jar");
+        settings.setOnAction(event -> {
+            handleSettingsAction();
+        });
         if (!Files.exists(options)) {
             playerButton.setText("Download");
             playerButton.setOnAction(event -> {
@@ -92,6 +100,12 @@ public class MainPageController {
                 });
             });
         }).start();
+    }
+    public void setViewManager(ViewManager viewManager) {
+        this.viewManager = viewManager;
+    }
+    private void handleSettingsAction() {
+        viewManager.showPage("SettingsPage.fxml", "Settings", 400, 640, null);
     }
 
     private void handlePlayButtonAction() throws IOException {
@@ -129,6 +143,7 @@ public class MainPageController {
         for (String line : newsContent.split("\n")) {
             Text text = new Text(line + "\n");
             text.setStyle("-fx-fill: white;");
+            text.setFont(Font.font(16));
             newsText.getChildren().add(text);
         }
     }

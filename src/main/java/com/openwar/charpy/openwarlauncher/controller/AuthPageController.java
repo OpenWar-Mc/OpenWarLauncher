@@ -10,9 +10,6 @@ import com.sun.net.httpserver.HttpServer;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -20,10 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.URI;
@@ -39,6 +33,7 @@ public class AuthPageController {
     private static final String REDIRECT_URI = "http://localhost:3000/auth/redirect";
     private static final String AUTH_URL = "https://login.live.com/oauth20_authorize.srf";
     private static final String SCOPE = "XboxLive.signin offline_access";
+    private HttpServer server;
 
     @FXML
     private Button authButton;
@@ -87,7 +82,11 @@ public class AuthPageController {
     }
     private boolean minecraftApi(String accessToken) throws Exception {
         MinecraftAuthHelper ma = new MinecraftAuthHelper();
-        playerProfile = ma.authenticateMcAPIOnly(accessToken);
+        try {
+            playerProfile = ma.authenticateMcAPIOnly(accessToken);
+        } catch (Exception e) {
+            return false;
+        }
         if (playerProfile != null) {
             Platform.runLater(() -> {
                 statusLabel.setText("Connected");
@@ -108,7 +107,11 @@ public class AuthPageController {
         viewManager.showPage("MainPage.fxml", "OpenWar - Launcher | Stable Edition v1.3.2", 1080, 750, playerProfile);
     }
 
-    private void displayDisconnectedState() {
+    private void displayDisconnectedState() throws IOException {
+        Path tokenPath = Paths.get(System.getenv("APPDATA"), ".openwar\\launcher_profiles");
+        if (Files.exists(tokenPath)) {
+            Files.delete(tokenPath);
+        }
         statusLabel.setText("");
         usernameLabel.setText("Disconnected");
         avatar.setImage(new Image("https://openwar.fr/public/images/uk.png", true));
@@ -192,11 +195,17 @@ public class AuthPageController {
     }
 
     public void startLocalServer() throws IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress(3000), 0);
+        server = HttpServer.create(new InetSocketAddress(3000), 0);
         server.createContext("/auth/redirect", new AuthHandler(this));
         server.start();
         //TODO FERMER LE SERVER WEB
     }
+//                    Path tokenPath = Paths.get(System.getenv("APPDATA"), ".openwar\\launcher_profiles");
+//                    if (Files.exists(tokenPath)) {
+//                        Files.delete(tokenPath);
+//                    }
+
+
 
     static class AuthHandler implements HttpHandler {
         private final AuthPageController controller;
@@ -218,6 +227,7 @@ public class AuthPageController {
                     String accessToken = jsonResponse.getString("access_token");
                     controller.loadUserInfo(accessToken);
                     responseMessage = "Authentication successful! You can close this window.";
+
                 } catch (Exception e) {
                     responseMessage = "Failed to exchange code for token: " + e.getMessage();
                 }

@@ -6,6 +6,9 @@ import com.openwar.charpy.openwarlauncher.utils.PlayerProfile;
 import com.openwar.charpy.openwarlauncher.utils.ViewManager;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -14,6 +17,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -50,6 +55,20 @@ public class MainPageController {
 
     private PlayerProfile playerProfile;
     private ViewManager viewManager;
+
+    private int gb = 4;
+    private int width = 600;
+    private int height = 400;
+
+    public void setGb(int gb) { this.gb = gb;}
+    public void setWidth(int gb) { this.gb = gb;}
+    public void setHeight(int gb) { this.gb = gb;}
+
+    private MainPageController mainPageController;
+
+    public void setMainPageController(MainPageController mainPageController) {
+        this.mainPageController = mainPageController;
+    }
 
 
     public void setPlayerProfile(PlayerProfile playerProfile) {
@@ -104,14 +123,15 @@ public class MainPageController {
     public void setViewManager(ViewManager viewManager) {
         this.viewManager = viewManager;
     }
+
     private void handleSettingsAction() {
-        viewManager.showPage("SettingsPage.fxml", "Settings", 400, 640, null);
+        viewManager.showPage("SettingsPage.fxml", "Settings", 260, 360, null);
     }
 
     private void handlePlayButtonAction() throws IOException {
         progressBar.setVisible(true);
         LaunchMinecraft lm = new LaunchMinecraft(progressBar);
-        lm.startMinecraft(playerProfile.getToken(),playerProfile.getUsername(),playerProfile.getUuid());
+        lm.startMinecraft(playerProfile.getToken(),playerProfile.getUsername(),playerProfile.getUuid(), gb, width, height);
     }
     private void loadNewsText() {
         String urlIMG = "https://openwar.fr/public/news/newsIMG.png";

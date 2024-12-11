@@ -22,11 +22,11 @@ public class LaunchMinecraft {
     private static final String VERSION_PATH = MINECRAFT_DIR + "/versions/1.12.2";
     private static final String CUSTOM_JAVA = MINECRAFT_DIR + "/CustomJava/bin/java";
 
-    public void startMinecraft(String accessToken, String username, String uuid) throws IOException {
+    public void startMinecraft(String accessToken, String username, String uuid, int gb, int width, int height) throws IOException {
         List<String> command = new ArrayList<>();
         command.add(CUSTOM_JAVA);
         command.add("-Xms1024M");
-        command.add("-Xmx16G");
+        command.add("-Xmx"+gb+"G");
         command.add("-XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump");
         command.add("-Djava.library.path=" + VERSION_PATH + "/natives");
         StringBuilder classPathBuilder = new StringBuilder();
@@ -37,9 +37,9 @@ public class LaunchMinecraft {
         command.add("--gameDir");
         command.add(MINECRAFT_DIR);
         command.add("--width");
-        command.add("854");
+        command.add(""+width);
         command.add("--height");
-        command.add("480");
+        command.add(""+height);
         command.add("--username");
         command.add(username);
         command.add("--version");

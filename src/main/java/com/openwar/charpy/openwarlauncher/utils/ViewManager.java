@@ -2,7 +2,6 @@ package com.openwar.charpy.openwarlauncher.utils;
 
 import com.openwar.charpy.openwarlauncher.controller.AuthPageController;
 import com.openwar.charpy.openwarlauncher.controller.MainPageController;
-import com.openwar.charpy.openwarlauncher.controller.SettingsPageController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,7 +17,9 @@ public class ViewManager {
     public ViewManager(Stage stage) {
         this.stage = stage;
     }
-
+    public Stage getStage() {
+        return this.stage;
+    }
     public void showPage(String fxmlPath, String title, int width, int height, PlayerProfile pf) {
         try {
             StackPane root = new StackPane();
@@ -33,11 +34,7 @@ public class ViewManager {
                 System.out.println("MAIN View Manager for "+ controller);
                 ((MainPageController) controller).setViewManager(this);
                 ((MainPageController) controller).setPlayerProfile(pf);
-            } else if (controller instanceof SettingsPageController) {
-                System.out.println("SETTINGS View Manager for "+ controller);
-                ((SettingsPageController) controller).setViewManager(this);
             }
-            root.getChildren().add(page);
             stage.setResizable(false);
             stage.setScene(new Scene(root, width, height));
             stage.getIcons().add(new Image("https://openwar.fr/public/images/op.png"));

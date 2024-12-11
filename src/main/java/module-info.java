@@ -20,6 +20,7 @@ module com.openwar.charpy.openwarlauncher {
     requires org.json;
     requires org.jsoup;
     requires com.google.gson;
+    requires jdk.management;
 
     opens com.openwar.charpy.openwarlauncher to javafx.fxml;
     exports com.openwar.charpy.openwarlauncher;

@@ -19,7 +19,7 @@ import javafx.scene.control.ProgressBar;
 public class InstallOpenWar {
     private ProgressBar progressBar;
     private double totalTasks;
-    private double completedTasks; 
+    private double completedTasks;
 
     private static final String MINECRAFT_DIR = String.valueOf(Paths.get(System.getenv("APPDATA")));
     private static final String ZIP_URL_NATIVE = "https://openwar.fr/OPENWAR/game/natives.zip";
@@ -34,12 +34,14 @@ public class InstallOpenWar {
     private static final String ASSETS_DIR = MINECRAFT_DIR + "/.openwar/assets";
     private static final String FORGE_DIR = MINECRAFT_DIR + "/.openwar/versions";
     private static final String VERSION_DIR = MINECRAFT_DIR + "/.openwar/versions/1.12.2";
+    private static final String MODS_DIR = MINECRAFT_DIR + "/.openwar";
+    private static final String CONFIG_DIR = MINECRAFT_DIR + "/.openwar";
 
     private static final String JSON_URL = "https://piston-meta.mojang.com/v1/packages/832d95b9f40699d4961394dcf6cf549e65f15dc5/1.12.2.json";
 
     public InstallOpenWar(ProgressBar progressBar) {
         this.progressBar = progressBar;
-        this.totalTasks = 12; // 6 téléchargements + 6 extractions
+        this.totalTasks = 12;
         this.completedTasks = 0;
     }
 
@@ -50,8 +52,8 @@ public class InstallOpenWar {
                 performStep(ZIP_URL_NATIVE, DOWNLOAD_PATH, VERSION_DIR);
                 performStep(ZIP_URL_FORGE, DOWNLOAD_PATH, FORGE_DIR);
                 performStep(ZIP_URL_GAME, DOWNLOAD_PATH, MINECRAFT_DIR);
-                performStep(ZIP_URL_MODS, DOWNLOAD_PATH, MINECRAFT_DIR);
-                performStep(ZIP_URL_CONFIG, DOWNLOAD_PATH, MINECRAFT_DIR);
+                performStep(ZIP_URL_MODS, DOWNLOAD_PATH, MODS_DIR);
+                performStep(ZIP_URL_CONFIG, DOWNLOAD_PATH, CONFIG_DIR);
 
                 File download = new File(DOWNLOAD_PATH);
                 download.delete();
@@ -93,7 +95,6 @@ public class InstallOpenWar {
         int responseCode = httpConn.getResponseCode();
 
         if (responseCode == HttpURLConnection.HTTP_OK) {
-            int contentLength = httpConn.getContentLength();
             File file = new File(saveDir);
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();

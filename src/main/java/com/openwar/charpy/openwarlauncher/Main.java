@@ -1,6 +1,5 @@
 package com.openwar.charpy.openwarlauncher;
 
-import com.openwar.charpy.openwarlauncher.controller.AuthPageController;
 import com.openwar.charpy.openwarlauncher.utils.ViewManager;
 import javafx.application.Application;
 import javafx.stage.Stage;

@@ -61,15 +61,8 @@ public class MainPageController {
     private int height = 400;
 
     public void setGb(int gb) { this.gb = gb;}
-    public void setWidth(int gb) { this.gb = gb;}
-    public void setHeight(int gb) { this.gb = gb;}
-
-    private MainPageController mainPageController;
-
-    public void setMainPageController(MainPageController mainPageController) {
-        this.mainPageController = mainPageController;
-    }
-
+    public void setWidth(int width) { this.width = width;}
+    public void setHeight(int height) { this.height = height;}
 
     public void setPlayerProfile(PlayerProfile playerProfile) {
         System.out.println("PLAYER PROFILE" + playerProfile.getUuid());

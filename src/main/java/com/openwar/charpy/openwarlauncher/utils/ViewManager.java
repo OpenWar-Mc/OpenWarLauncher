@@ -17,9 +17,7 @@ public class ViewManager {
     public ViewManager(Stage stage) {
         this.stage = stage;
     }
-    public Stage getStage() {
-        return this.stage;
-    }
+
     public void showPage(String fxmlPath, String title, int width, int height, PlayerProfile pf) {
         try {
             StackPane root = new StackPane();
@@ -35,6 +33,7 @@ public class ViewManager {
                 ((MainPageController) controller).setViewManager(this);
                 ((MainPageController) controller).setPlayerProfile(pf);
             }
+            root.getChildren().add(page);
             stage.setResizable(false);
             stage.setScene(new Scene(root, width, height));
             stage.getIcons().add(new Image("https://openwar.fr/public/images/op.png"));

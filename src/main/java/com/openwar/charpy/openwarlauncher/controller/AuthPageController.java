@@ -10,6 +10,7 @@ import com.sun.net.httpserver.HttpServer;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -33,7 +34,6 @@ public class AuthPageController {
     private static final String REDIRECT_URI = "http://localhost:3000/auth/redirect";
     private static final String AUTH_URL = "https://login.live.com/oauth20_authorize.srf";
     private static final String SCOPE = "XboxLive.signin offline_access";
-    private HttpServer server;
 
     @FXML
     private Button authButton;
@@ -48,9 +48,9 @@ public class AuthPageController {
 
     @FXML
     private void initialize() throws Exception {
-        setupUI();
-        tryLoadingLocalToken();
-        checkServerStatus("90.109.7.236", 25595);
+       //setupUI();
+       //tryLoadingLocalToken();
+       //checkServerStatus("90.109.7.236", 25595);
     }
 
     private void tryLoadingLocalToken() throws Exception {
@@ -80,7 +80,7 @@ public class AuthPageController {
             displayDisconnectedState();
         }
     }
-    private boolean minecraftApi(String accessToken) throws Exception {
+    private boolean minecraftApi(String accessToken) {
         MinecraftAuthHelper ma = new MinecraftAuthHelper();
         try {
             playerProfile = ma.authenticateMcAPIOnly(accessToken);
@@ -98,8 +98,11 @@ public class AuthPageController {
         return false;
     }
     private void setupUI() {
-        backgroundImage.setImage(new Image("https://openwar.fr/public/images/background.png"));
-        icon.setImage(new Image("https://openwar.fr/public/images/op.png"));
+        //backgroundImage.setImage(new Image("https://openwar.fr/public/images/background.png"));
+        //icon.setImage(new Image("https://openwar.fr/public/images/op.png"));
+        icon.setImage(new Image(String.valueOf(getClass().getResource("/com/openwar/charpy/openwarlauncher/images/background.png"))));
+        backgroundImage.setImage(new Image(String.valueOf(getClass().getResource("/com/openwar/charpy/openwarlauncher/images/op.png"))));
+        System.out.println("test");
     }
     private void loadMain(PlayerProfile playerProfile) throws IOException {
         Stage currentStage = (Stage) authButton.getScene().getWindow();
@@ -114,7 +117,8 @@ public class AuthPageController {
         }
         statusLabel.setText("");
         usernameLabel.setText("Disconnected");
-        avatar.setImage(new Image("https://openwar.fr/public/images/uk.png", true));
+        avatar.setImage(new Image(String.valueOf(getClass().getResource("/com/openwar/charpy/openwarlauncher/images/uk.png"))));
+        //avatar.setImage(new Image("https://openwar.fr/public/images/uk.png", true));
         authButton.setText("Login with Microsoft");
         authButton.setOnAction(event -> authenticateWithMicrosoft());
     }
@@ -195,15 +199,11 @@ public class AuthPageController {
     }
 
     public void startLocalServer() throws IOException {
-        server = HttpServer.create(new InetSocketAddress(3000), 0);
+        HttpServer server = HttpServer.create(new InetSocketAddress(3000), 0);
         server.createContext("/auth/redirect", new AuthHandler(this));
         server.start();
         //TODO FERMER LE SERVER WEB
     }
-//                    Path tokenPath = Paths.get(System.getenv("APPDATA"), ".openwar\\launcher_profiles");
-//                    if (Files.exists(tokenPath)) {
-//                        Files.delete(tokenPath);
-//                    }
 
 
 

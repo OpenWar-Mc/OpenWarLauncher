@@ -57,8 +57,8 @@ public class MainPageController {
     private ViewManager viewManager;
 
     private int gb = 4;
-    private int width = 600;
-    private int height = 400;
+    private int width = 854;
+    private int height = 480;
 
     public void setGb(int gb) { this.gb = gb;}
     public void setWidth(int width) { this.width = width;}
@@ -73,7 +73,7 @@ public class MainPageController {
     @FXML
     public void initialize() {
         loadNewsText();
-        backgroundImage.setImage(new Image("https://openwar.fr/public/images/background.png"));
+        backgroundImage.setImage(new Image(String.valueOf(getClass().getResource("/com/openwar/charpy/openwarlauncher/images/background.png"))));
         Path options = Paths.get(System.getenv("APPDATA"), ".openwar\\versions\\1.12.2-forge-14.23.5.2860\\1.12.2-forge-14.23.5.2860.jar");
         settings.setOnAction(event -> {
             handleSettingsAction();

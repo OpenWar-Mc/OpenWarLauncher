@@ -48,9 +48,9 @@ public class AuthPageController {
 
     @FXML
     private void initialize() throws Exception {
-       //setupUI();
-       //tryLoadingLocalToken();
-       //checkServerStatus("90.109.7.236", 25595);
+       setupUI();
+       tryLoadingLocalToken();
+       checkServerStatus("90.109.7.236", 25595);
     }
 
     private void tryLoadingLocalToken() throws Exception {
@@ -98,16 +98,13 @@ public class AuthPageController {
         return false;
     }
     private void setupUI() {
-        //backgroundImage.setImage(new Image("https://openwar.fr/public/images/background.png"));
-        //icon.setImage(new Image("https://openwar.fr/public/images/op.png"));
-        icon.setImage(new Image(String.valueOf(getClass().getResource("/com/openwar/charpy/openwarlauncher/images/background.png"))));
-        backgroundImage.setImage(new Image(String.valueOf(getClass().getResource("/com/openwar/charpy/openwarlauncher/images/op.png"))));
-        System.out.println("test");
+        icon.setImage(new Image(String.valueOf(getClass().getResource("/com/openwar/charpy/openwarlauncher/images/op.png"))));
+        backgroundImage.setImage(new Image(String.valueOf(getClass().getResource("/com/openwar/charpy/openwarlauncher/images/background.png"))));
     }
     private void loadMain(PlayerProfile playerProfile) throws IOException {
         Stage currentStage = (Stage) authButton.getScene().getWindow();
         currentStage.close();
-        viewManager.showPage("MainPage.fxml", "OpenWar - Launcher | Stable Edition v1.3.2", 1080, 750, playerProfile);
+        viewManager.showPage("MainPage.fxml", "OpenWar - Launcher | Stable Edition v1.4.6", 1080, 750, playerProfile);
     }
 
     private void displayDisconnectedState() throws IOException {

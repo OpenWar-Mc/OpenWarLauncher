@@ -1,9 +1,6 @@
 package com.openwar.charpy.openwarlauncher.controller;
 
-import com.openwar.charpy.openwarlauncher.utils.InstallOpenWar;
-import com.openwar.charpy.openwarlauncher.utils.LaunchMinecraft;
-import com.openwar.charpy.openwarlauncher.utils.PlayerProfile;
-import com.openwar.charpy.openwarlauncher.utils.ViewManager;
+import com.openwar.charpy.openwarlauncher.utils.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,7 +53,7 @@ public class MainPageController {
     private PlayerProfile playerProfile;
     private ViewManager viewManager;
 
-    private int gb = 4;
+    private int gb = 6;
     private int width = 854;
     private int height = 480;
 
@@ -123,8 +120,8 @@ public class MainPageController {
 
     private void handlePlayButtonAction() throws IOException {
         progressBar.setVisible(true);
-        LaunchMinecraft lm = new LaunchMinecraft(progressBar);
-        lm.startMinecraft(playerProfile.getToken(),playerProfile.getUsername(),playerProfile.getUuid(), gb, width, height);
+        UpdateGame up = new UpdateGame(progressBar);
+        up.updateGame(playerProfile.getToken(),playerProfile.getUsername(),playerProfile.getUuid(), gb, width, height);
     }
     private void loadNewsText() {
         String urlIMG = "https://openwar.fr/public/news/newsIMG.png";

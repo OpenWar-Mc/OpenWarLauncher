@@ -66,6 +66,7 @@ public class LaunchMinecraft {
         Stage currentStage = (Stage) progressBar.getScene().getWindow();
         currentStage.close();
         Platform.exit();
+        System.exit(0);
     }
 
 

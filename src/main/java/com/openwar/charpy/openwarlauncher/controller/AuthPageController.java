@@ -196,6 +196,7 @@ public class AuthPageController {
     }
 
     public void startLocalServer() throws IOException {
+
         HttpServer server = HttpServer.create(new InetSocketAddress(3000), 0);
         server.createContext("/auth/redirect", new AuthHandler(this));
         server.start();

@@ -23,43 +23,65 @@ public class UpdateGame {
         this.progressBar = progressBar;
     }
 
+
     public void updateGame(String accessToken, String username, String uuid, int gb, int width, int height) throws IOException {
         new Thread(() -> {
             String fileUrl = ZIP_URL_MODS;
-            String localFilePath = MINECRAFT_DIR+ "/.openwar/mods/journeymap-1.12.2-5.7.1.jar";
+            String localFilePath = MINECRAFT_DIR + "/.openwar/mods/journeymap-1.12.2-5.7.1.jar";
             Date serverFileDate = getServerFileModificationDate(fileUrl);
 
             if (serverFileDate != null) {
                 File localFile = new File(localFilePath);
                 long localFileDate = 0;
+
                 if (localFile.exists()) {
                     localFileDate = localFile.lastModified();
                 }
-                System.out.println(serverFileDate.getTime() + " | " + localFileDate);
+
+                System.out.println("[DEBUG] Server file date: " + serverFileDate.getTime());
+                System.out.println("[DEBUG] Local file date: " + localFileDate);
+
                 if (serverFileDate.getTime() > localFileDate) {
-                    System.out.println("UPDATING GAMEEEE");
+                    System.out.println("[INFO] Updating game files...");
                     updateProgressBar(20);
                     try {
-                        System.out.println("DOWNLOAD ");
+                        System.out.println("[INFO] Downloading...");
                         downloadFile(fileUrl, DOWNLOAD_PATH);
                     } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        System.err.println("[ERROR] Failed to download file: " + e.getMessage());
+                        return;
                     }
-                    System.out.println("PHASE 2");
+
                     updateProgressBar(60);
                     try {
-                        System.out.println("EXCTRACT");
+                        System.out.println("[INFO] Extracting...");
                         extractZip(DOWNLOAD_PATH, MODS_DIR);
                     } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        System.err.println("[ERROR] Failed to extract file: " + e.getMessage());
+                        return;
                     }
+
                     updateProgressBar(100);
+                    System.out.println("[INFO] Update completed.");
+                } else {
+                    System.out.println("[INFO] Local files are up-to-date.");
                 }
+            } else {
+                System.err.println("[ERROR] Failed to retrieve server file date.");
             }
+
+            Platform.runLater(() -> {
+                try {
+                    System.out.println("[INFO] Launching game...");
+                    LaunchMinecraft lm = new LaunchMinecraft(progressBar);
+                    lm.startMinecraft(accessToken, username, uuid, gb, width, height);
+                } catch (IOException e) {
+                    System.err.println("[ERROR] Failed to launch Minecraft: " + e.getMessage());
+                }
+            });
         }).start();
-        LaunchMinecraft lm = new LaunchMinecraft(progressBar);
-        lm.startMinecraft(accessToken,username,uuid, gb, width, height);
     }
+
 
     private void updateProgressBar(double progress) {
         Platform.runLater(() -> progressBar.setProgress(progress / 100.0));

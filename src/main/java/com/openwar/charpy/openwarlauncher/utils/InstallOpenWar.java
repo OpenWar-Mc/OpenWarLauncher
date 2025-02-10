@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.function.Consumer;
@@ -21,7 +22,7 @@ public class InstallOpenWar {
     private double totalTasks;
     private double completedTasks;
 
-    private static final String MINECRAFT_DIR = String.valueOf(Paths.get(System.getenv("APPDATA")));
+    private static String MINECRAFT_DIR = "";
     private static final String ZIP_URL_NATIVE = "https://openwar.fr/OPENWAR/game/natives.zip";
     private static final String ZIP_URL_LIBRARIES = "https://openwar.fr/OPENWAR/game/libraries.zip";
     private static final String ZIP_URL_GAME = "https://openwar.fr/OPENWAR/game/openwar.zip";
@@ -40,11 +41,27 @@ public class InstallOpenWar {
     private static final String JSON_URL = "https://piston-meta.mojang.com/v1/packages/832d95b9f40699d4961394dcf6cf549e65f15dc5/1.12.2.json";
 
     public InstallOpenWar(ProgressBar progressBar) {
+        MINECRAFT_DIR = String.valueOf(whatOsIsThis());
         this.progressBar = progressBar;
         this.totalTasks = 12;
         this.completedTasks = 0;
     }
+    private Path whatOsIsThis() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        Path appDataPath;
 
+        if (osName.contains("win")) {
+            appDataPath = Paths.get(System.getenv("APPDATA"));
+        } else if (osName.contains("mac")) {
+            appDataPath = Paths.get(System.getProperty("user.home"));
+        } else if (osName.contains("nix") || osName.contains("nux") || osName.contains("aix")) {
+            appDataPath = Paths.get(System.getProperty("user.home"));
+        } else {
+            throw new UnsupportedOperationException("OS non supporté : " + osName);
+        }
+
+        return appDataPath;
+    }
     public void install(Consumer<Void> onComplete) {
         new Thread(() -> {
             try {

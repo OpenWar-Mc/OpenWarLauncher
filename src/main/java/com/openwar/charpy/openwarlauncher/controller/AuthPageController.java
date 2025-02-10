@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 
+import java.awt.*;
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -34,6 +35,7 @@ public class AuthPageController {
     private static final String REDIRECT_URI = "http://localhost:3000/auth/redirect";
     private static final String AUTH_URL = "https://login.live.com/oauth20_authorize.srf";
     private static final String SCOPE = "XboxLive.signin offline_access";
+    private HttpServer server;
 
     @FXML
     private Button authButton;
@@ -52,9 +54,25 @@ public class AuthPageController {
        tryLoadingLocalToken();
        checkServerStatus("90.109.7.236", 25595);
     }
+    private Path whatOsIsThis() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        Path appDataPath;
+
+        if (osName.contains("win")) {
+            appDataPath = Paths.get(System.getenv("APPDATA"), ".openwar", "launcher_profiles");
+        } else if (osName.contains("mac")) {
+            appDataPath = Paths.get(System.getProperty("user.home"), "Library", "Application Support", ".openwar", "launcher_profiles");
+        } else if (osName.contains("nix") || osName.contains("nux") || osName.contains("aix")) {
+            appDataPath = Paths.get(System.getProperty("user.home"), ".config", ".openwar", "launcher_profiles");
+        } else {
+            throw new UnsupportedOperationException("OS non supporté : " + osName);
+        }
+
+        return appDataPath;
+    }
 
     private void tryLoadingLocalToken() throws Exception {
-        Path tokenPath = Paths.get(System.getenv("APPDATA"), ".openwar\\launcher_profiles");
+        Path tokenPath = whatOsIsThis();
         if (Files.exists(tokenPath)) {
             String jsonString = new String(Files.readAllBytes(tokenPath));
             JSONObject jsonObject = new JSONObject(jsonString);
@@ -104,11 +122,11 @@ public class AuthPageController {
     private void loadMain(PlayerProfile playerProfile) throws IOException {
         Stage currentStage = (Stage) authButton.getScene().getWindow();
         currentStage.close();
-        viewManager.showPage("MainPage.fxml", "OpenWar - Launcher | Stable Edition v1.4.6", 1080, 750, playerProfile);
+        viewManager.showPage("MainPage.fxml", "OpenWar - Launcher | Stable Edition v1.4.7", 1080, 750, playerProfile);
     }
 
     private void displayDisconnectedState() throws IOException {
-        Path tokenPath = Paths.get(System.getenv("APPDATA"), ".openwar\\launcher_profiles");
+        Path tokenPath = whatOsIsThis();
         if (Files.exists(tokenPath)) {
             Files.delete(tokenPath);
         }
@@ -177,30 +195,49 @@ public class AuthPageController {
             @Override
             protected Void call() throws Exception {
                 startLocalServer();
+
                 String authLink = AUTH_URL + "?client_id=" + CLIENT_ID
                         + "&redirect_uri=" + URLEncoder.encode(REDIRECT_URI, StandardCharsets.UTF_8)
                         + "&response_type=code"
                         + "&scope=" + URLEncoder.encode(SCOPE, StandardCharsets.UTF_8)
                         + "&prompt=select_account";
-                java.awt.Desktop.getDesktop().browse(new URI(authLink));
+
+                Desktop.getDesktop().browse(new URI(authLink));
+
                 return null;
             }
 
             @Override
             protected void failed() {
                 Platform.runLater(() -> statusLabel.setText("Authentication failed!"));
+                stopLocalServer();
             }
         };
+
         new Thread(authTask).setDaemon(true);
         authTask.run();
     }
 
+    public void onAuthSuccess() {
+        stopLocalServer();
+    }
     public void startLocalServer() throws IOException {
-
-        HttpServer server = HttpServer.create(new InetSocketAddress(3000), 0);
+        this.server = HttpServer.create(new InetSocketAddress(3000), 0);
         server.createContext("/auth/redirect", new AuthHandler(this));
         server.start();
-        //TODO FERMER LE SERVER WEB
+        System.out.println("Local server started on port 3000.");
+    }
+
+    public void stopLocalServer() {
+        System.out.println("SERVER STOP CALLED");
+
+        if (server == null) {
+            System.out.println("Error: server is null!");
+            return;
+        }
+
+        server.stop(0);
+        System.out.println("Local server stopped.");
     }
 
 
@@ -225,6 +262,7 @@ public class AuthPageController {
                     String accessToken = jsonResponse.getString("access_token");
                     controller.loadUserInfo(accessToken);
                     responseMessage = "Authentication successful! You can close this window.";
+                    controller.onAuthSuccess();
 
                 } catch (Exception e) {
                     responseMessage = "Failed to exchange code for token: " + e.getMessage();

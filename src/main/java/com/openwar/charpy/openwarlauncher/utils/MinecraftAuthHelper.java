@@ -33,7 +33,7 @@ public class MinecraftAuthHelper {
         String accessTokenMc = "";
         accessTokenMc = extractAccessTokenFromJson(minecraftToken);
 
-        Path path = Paths.get(System.getenv("APPDATA"), ".openwar", "launcher_profiles");
+        Path path = whatOsIsThis();
         Files.createDirectories(path.getParent());
         JSONObject playerData = new JSONObject();
         playerData.put("token", accessTokenMc);
@@ -41,7 +41,22 @@ public class MinecraftAuthHelper {
         PlayerProfile playerProfile = getPlayerProfile(accessTokenMc);
         return playerProfile;
     }
+    private Path whatOsIsThis() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        Path appDataPath;
 
+        if (osName.contains("win")) {
+            appDataPath = Paths.get(System.getenv("APPDATA"), ".openwar", "launcher_profiles");
+        } else if (osName.contains("mac")) {
+            appDataPath = Paths.get(System.getProperty("user.home"), "Library", "Application Support", ".openwar", "launcher_profiles");
+        } else if (osName.contains("nix") || osName.contains("nux") || osName.contains("aix")) {
+            appDataPath = Paths.get(System.getProperty("user.home"), ".config", ".openwar", "launcher_profiles");
+        } else {
+            throw new UnsupportedOperationException("OS non supporté : " + osName);
+        }
+
+        return appDataPath;
+    }
     private String getXboxLiveToken(String accessToken) throws Exception {
         URL url = new URL("https://user.auth.xboxlive.com/user/authenticate");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();

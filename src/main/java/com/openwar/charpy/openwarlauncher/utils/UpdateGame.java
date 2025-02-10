@@ -7,22 +7,41 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.FileTime;
 import java.util.Date;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class UpdateGame {
     private ProgressBar progressBar;
-    private static final String MINECRAFT_DIR = String.valueOf(Paths.get(System.getenv("APPDATA")));
+    private static String MINECRAFT_DIR = "";
     private static final String MODS_DIR = MINECRAFT_DIR + "/.openwar";
     private static final String ZIP_URL_MODS = "https://openwar.fr/OPENWAR/game/mods.zip";
     private static final String DOWNLOAD_PATH = MINECRAFT_DIR + "/.openwar/download";
 
     public UpdateGame(ProgressBar progressBar) {
+        MINECRAFT_DIR = String.valueOf(whatOsIsThis());
         this.progressBar = progressBar;
     }
+    private Path whatOsIsThis() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        Path appDataPath;
 
+        if (osName.contains("win")) {
+            appDataPath = Paths.get(System.getenv("APPDATA"));
+        } else if (osName.contains("mac")) {
+            appDataPath = Paths.get(System.getProperty("user.home"));
+        } else if (osName.contains("nix") || osName.contains("nux") || osName.contains("aix")) {
+            appDataPath = Paths.get(System.getProperty("user.home"));
+        } else {
+            throw new UnsupportedOperationException("OS non supporté : " + osName);
+        }
+
+        return appDataPath;
+    }
 
     public void updateGame(String accessToken, String username, String uuid, int gb, int width, int height) throws IOException {
         new Thread(() -> {
@@ -63,6 +82,7 @@ public class UpdateGame {
 
                     updateProgressBar(100);
                     System.out.println("[INFO] Update completed.");
+                    setFileTimestamp(Path.of(localFilePath), System.currentTimeMillis());
                 } else {
                     System.out.println("[INFO] Local files are up-to-date.");
                 }
@@ -82,7 +102,16 @@ public class UpdateGame {
         }).start();
     }
 
-
+    public static void setFileTimestamp(Path file, long timestamp) {
+        try {
+            FileTime time = FileTime.fromMillis(timestamp);
+            Files.setLastModifiedTime(file, time);
+            System.out.println("[INFO] Date du fichier définie à : " + timestamp);
+        } catch (IOException e) {
+            System.err.println("[ERROR] Impossible de modifier la date du fichier : " + file);
+            e.printStackTrace();
+        }
+    }
     private void updateProgressBar(double progress) {
         Platform.runLater(() -> progressBar.setProgress(progress / 100.0));
     }

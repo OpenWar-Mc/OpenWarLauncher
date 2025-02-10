@@ -1,0 +1,10 @@
+- Added OpenWar Event
+- Added OpenWar HUD
+- Added OpenWar RPC
+- Added OpenWar Banned
+- Fixed Automatic Event
+New Features about those mod:
+- New event command
+- New keybind 
+- New RPC
+- Banned item

@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.ImageCursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.effect.Glow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Ellipse?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openwar.charpy.openwarlauncher.controller.MainPageController">
-    <ImageView fx:id="backgroundImage" fitHeight="768.0" fitWidth="1080.0" preserveRatio="true">
+<AnchorPane prefHeight="738.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.openwar.charpy.openwarlauncher.controller.MainPageController">
+    <ImageView fx:id="backgroundImage" fitHeight="776.0" fitWidth="1080.0" preserveRatio="true">
         <image>
             <Image url="https://openwar.fr/public/images/background.png" />
         </image>
@@ -24,7 +17,7 @@
          <Cursor fx:constant="DEFAULT" />
       </cursor>
     </ImageView>
-    <Button fx:id="playerButton" depthTest="DISABLE" layoutX="418.0" layoutY="593.0" prefHeight="57.0" prefWidth="245.0" style="-fx-background-color: #7d1c15; -fx-background-radius: 10px; -fx-text-fill: white; -fx-font-size: 25px; -fx-font-weight: bold;" text="Play" textFill="WHITE" AnchorPane.leftAnchor="418.0" AnchorPane.topAnchor="593.0">
+    <Button fx:id="playerButton" depthTest="DISABLE" layoutX="417.0" layoutY="646.0" prefHeight="57.0" prefWidth="245.0" style="-fx-background-color: #7d1c15; -fx-background-radius: 10px; -fx-text-fill: white; -fx-font-size: 25px; -fx-font-weight: bold;" text="Play" textFill="WHITE" AnchorPane.leftAnchor="417.0" AnchorPane.topAnchor="646.0">
         <font>
             <Font name="Monospaced Bold" size="34.0" />
         </font>
@@ -62,14 +55,14 @@
          <Glow level="0.35" />
       </effect>
    </Label>
-   <TextFlow fx:id="newsText" layoutX="459.0" layoutY="177.0" prefHeight="292.0" prefWidth="178.0" />
+   <TextFlow fx:id="newsText" layoutX="361.0" layoutY="177.0" prefHeight="292.0" prefWidth="277.0" />
     <ImageView fx:id="newsIMG" fitHeight="292.0" fitWidth="368.0" layoutX="637.0" layoutY="165.0" pickOnBounds="true" preserveRatio="false">
         <clip>
             <Rectangle arcHeight="30.0" arcWidth="30.0" height="292.0" width="368.0" />
         </clip>
     </ImageView>
    <Ellipse fill="#00000047" layoutX="201.0" layoutY="529.0" radiusX="100.0" radiusY="16.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-   <Button fx:id="settings" layoutX="36.0" layoutY="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #7d1c15; -fx-background-radius: 10px; -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;" text="Settings" textFill="WHITE">
+   <Button fx:id="settings" layoutX="933.0" layoutY="662.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #7d1c15; -fx-background-radius: 10px; -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;" text="Settings" textFill="WHITE">
       <font>
          <Font name="System Bold" size="13.0" />
       </font>
@@ -77,6 +70,15 @@
          <Cursor fx:constant="HAND" />
       </cursor>
    </Button>
+    <Ellipse fill="#00000047" layoutX="201.0" layoutY="529.0" radiusX="100.0" radiusY="16.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+    <Button fx:id="disconnect" layoutX="821.0" layoutY="662.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #7d1c15; -fx-background-radius: 10px; -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;" text="Disconnect" textFill="WHITE">
+        <font>
+            <Font name="System Bold" size="13.0" />
+        </font>
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </Button>
    <Line endX="230.0" fill="RED" layoutX="562.0" layoutY="311.0" rotate="90.0" startX="-100.0" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="3.0">
       <effect>
          <Glow />

@@ -18,6 +18,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -36,6 +37,8 @@ public class MainPageController {
 
     @FXML
     private Button playerButton;
+    @FXML
+    private Button disconnect;
 
     @FXML
     private ImageView skinplayer;
@@ -69,11 +72,15 @@ public class MainPageController {
     }
     @FXML
     public void initialize() {
+        SettingsManager.getInstance().loadSettings();
         loadNewsText();
         backgroundImage.setImage(new Image(String.valueOf(getClass().getResource("/com/openwar/charpy/openwarlauncher/images/background.png"))));
         Path options = Paths.get(System.getenv("APPDATA"), ".openwar\\versions\\1.12.2-forge-14.23.5.2860\\1.12.2-forge-14.23.5.2860.jar");
         settings.setOnAction(event -> {
             handleSettingsAction();
+        });
+        disconnect.setOnAction(actionEvent -> {
+            handleDisconnectButtonAction();
         });
         if (!Files.exists(options)) {
             playerButton.setText("Download");
@@ -114,15 +121,56 @@ public class MainPageController {
         this.viewManager = viewManager;
     }
 
+    private void handleDisconnectButtonAction() {
+        Path auth = whatOsIsThis();
+        File profile = auth.toFile();
+
+        System.out.println("Trying to delete: " + profile.getAbsolutePath());
+        System.out.println("File exists? " + profile.exists());
+        System.out.println("File writable? " + profile.canWrite());
+
+        if (profile.exists() && profile.delete()) {
+            System.out.println("Disconnected");
+        } else {
+            System.out.println("FILE CANNOT BE DELETED! LOL?");
+        }
+
+        viewManager.showPage("AuthPage.fxml", "OpenWar - Authentication", 400, 640, null);
+    }
+    private Path whatOsIsThis() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        Path appDataPath;
+
+        if (osName.contains("win")) {
+            appDataPath = Paths.get(System.getenv("APPDATA"), ".openwar", "launcher_profiles");
+        } else if (osName.contains("mac")) {
+            appDataPath = Paths.get(System.getProperty("user.home"), "Library", "Application Support", ".openwar", "launcher_profiles");
+        } else if (osName.contains("nix") || osName.contains("nux") || osName.contains("aix")) {
+            appDataPath = Paths.get(System.getProperty("user.home"), ".config", ".openwar", "launcher_profiles");
+        } else {
+            throw new UnsupportedOperationException("OS non supporté : " + osName);
+        }
+
+        return appDataPath;
+    }
     private void handleSettingsAction() {
-        viewManager.showPage("SettingsPage.fxml", "Settings", 260, 360, null);
+        viewManager.showModal("SettingsPage.fxml", "Settings", 300, 300);
     }
 
     private void handlePlayButtonAction() throws IOException {
         progressBar.setVisible(true);
+        SettingsManager settings = SettingsManager.getInstance();
         UpdateGame up = new UpdateGame(progressBar);
-        up.updateGame(playerProfile.getToken(),playerProfile.getUsername(),playerProfile.getUuid(), gb, width, height);
+        up.updateGame(
+                playerProfile.getToken(),
+                playerProfile.getUsername(),
+                playerProfile.getUuid(),
+                settings.getGb(),
+                settings.getWidth(),
+                settings.getHeight()
+        );
     }
+
     private void loadNewsText() {
         String urlIMG = "https://openwar.fr/public/news/newsIMG.png";
         newsIMG.setImage(new Image(urlIMG));

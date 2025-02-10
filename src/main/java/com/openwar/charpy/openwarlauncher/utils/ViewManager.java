@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -43,6 +44,25 @@ public class ViewManager {
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Erreur lors du chargement de la page : " + fxmlPath);
+        }
+    }
+    public void showModal(String fxmlPath, String title, int width, int height) {
+        try {
+            Stage dialog = new Stage();
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(stage);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/openwar/charpy/openwarlauncher/" + fxmlPath));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root, width, height);
+            dialog.setScene(scene);
+            dialog.setTitle(title);
+            dialog.getIcons().add(new Image("https://openwar.fr/public/images/op.png"));
+            dialog.setResizable(false);
+            dialog.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
